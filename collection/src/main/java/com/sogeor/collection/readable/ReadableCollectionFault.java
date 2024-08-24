@@ -1,4 +1,4 @@
-package com.sogeor.collection.readonly;
+package com.sogeor.collection.readable;
 
 import com.sogeor.collection.CollectionFault;
 import org.jetbrains.annotations.Contract;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @since 1.0.0-RC1
  */
-public class ReadOnlyCollectionFault extends CollectionFault {
+public class ReadableCollectionFault extends CollectionFault {
 
     /**
      * Представляет собой конструктор по умолчанию.
@@ -17,7 +17,7 @@ public class ReadOnlyCollectionFault extends CollectionFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public ReadOnlyCollectionFault() {
+    public ReadableCollectionFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -29,7 +29,7 @@ public class ReadOnlyCollectionFault extends CollectionFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public ReadOnlyCollectionFault(final @Nullable String message) {
+    public ReadableCollectionFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -41,7 +41,7 @@ public class ReadOnlyCollectionFault extends CollectionFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public ReadOnlyCollectionFault(final @Nullable Throwable cause) {
+    public ReadableCollectionFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -54,7 +54,7 @@ public class ReadOnlyCollectionFault extends CollectionFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public ReadOnlyCollectionFault(final @Nullable String message, final @Nullable Throwable cause) {
+    public ReadableCollectionFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -67,7 +67,7 @@ public class ReadOnlyCollectionFault extends CollectionFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public ReadOnlyCollectionFault(final boolean suppression, final boolean stackTrace) {
+    public ReadableCollectionFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
@@ -83,7 +83,7 @@ public class ReadOnlyCollectionFault extends CollectionFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public ReadOnlyCollectionFault(final @Nullable String message, final @Nullable Throwable cause,
+    public ReadableCollectionFault(final @Nullable String message, final @Nullable Throwable cause,
                                    final boolean suppression, final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
     }
