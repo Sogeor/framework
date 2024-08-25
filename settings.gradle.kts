@@ -1,2 +1,2 @@
 rootProject.name = "framework"
-include("collection", "throwable", "validation")
+include("collection", "function", "throwable", "validation")
