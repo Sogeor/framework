@@ -7,6 +7,7 @@
  */
 module com.sogeor.collection {
     requires org.jetbrains.annotations;
+    requires com.sogeor.function;
     requires com.sogeor.throwable;
     requires com.sogeor.validation;
 

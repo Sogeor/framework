@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":function"))
     implementation(project(":throwable"))
     implementation(project(":validation"))
 
