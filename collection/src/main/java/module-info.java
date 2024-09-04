@@ -6,15 +6,15 @@
  * @since 1.0.0-RC1
  */
 module com.sogeor.collection {
-    requires org.jetbrains.annotations;
     requires com.sogeor.function;
     requires com.sogeor.throwable;
     requires com.sogeor.validation;
+    requires org.jetbrains.annotations;
 
-    exports com.sogeor.collection;
     exports com.sogeor.collection.immutable;
     exports com.sogeor.collection.inherited;
     exports com.sogeor.collection.mutable;
     exports com.sogeor.collection.readable;
     exports com.sogeor.collection.writable;
+    exports com.sogeor.collection;
 }
