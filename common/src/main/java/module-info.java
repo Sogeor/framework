@@ -8,6 +8,5 @@ module com.sogeor.common {
     requires com.sogeor.throwable;
     requires org.jetbrains.annotations;
 
-    exports com.sogeor.common.singleton;
     exports com.sogeor.common;
 }
