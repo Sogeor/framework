@@ -1,5 +1,6 @@
 package com.sogeor.validation.argument;
 
+import com.sogeor.throwable.failure.utility.UtilityCreationFailure;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -12,7 +13,10 @@ public final class ArgumentValidator {
     /**
      * @since 1.0.0-RC1
      */
-    private ArgumentValidator() {}
+    private ArgumentValidator() throws UtilityCreationFailure {
+        throw new UtilityCreationFailure(
+                UtilityCreationFailure.TEMPLATE_MESSAGE.formatted("the ArgumentValidator utility class"));
+    }
 
     /**
      * @see #isNull(Object, String)
@@ -21,8 +25,7 @@ public final class ArgumentValidator {
     @Contract(value = "null -> null; !null -> fail", pure = true)
     public static <T> @Nullable T isNull(final @Nullable T object) throws NonNullArgumentValidationFault {
         if (object == null) return null;
-        throw new NonNullArgumentValidationFault(
-                NonNullArgumentValidationFault.TEMPLATE_MESSAGE.formatted("The passed object"));
+        throw new NonNullArgumentValidationFault();
     }
 
     /**
@@ -33,8 +36,8 @@ public final class ArgumentValidator {
     public static <T> @Nullable T isNull(final @Nullable T object, final @Nullable String name) throws
                                                                                                 NonNullArgumentValidationFault {
         if (object == null) return null;
-        throw new NonNullArgumentValidationFault(
-                NonNullArgumentValidationFault.TEMPLATE_MESSAGE.formatted(name != null ? name : "The passed object"));
+        if (name == null) throw new NonNullArgumentValidationFault();
+        throw new NonNullArgumentValidationFault(NonNullArgumentValidationFault.TEMPLATE_MESSAGE.formatted(name));
     }
 
     /**
@@ -44,8 +47,7 @@ public final class ArgumentValidator {
     @Contract(value = "!null -> param1; null -> fail", pure = true)
     public static <T> @NotNull T notNull(final @Nullable T object) throws NullArgumentValidationFault {
         if (object != null) return object;
-        throw new NullArgumentValidationFault(
-                NullArgumentValidationFault.TEMPLATE_MESSAGE.formatted("The passed object"));
+        throw new NullArgumentValidationFault();
     }
 
     /**
@@ -56,8 +58,8 @@ public final class ArgumentValidator {
     public static <T> @NotNull T notNull(final @Nullable T object, final @Nullable String name) throws
                                                                                                 NullArgumentValidationFault {
         if (object != null) return object;
-        throw new NullArgumentValidationFault(
-                NullArgumentValidationFault.TEMPLATE_MESSAGE.formatted(name != null ? name : "The passed object"));
+        if (name == null) throw new NullArgumentValidationFault();
+        throw new NullArgumentValidationFault(NullArgumentValidationFault.TEMPLATE_MESSAGE.formatted(name));
     }
 
 }

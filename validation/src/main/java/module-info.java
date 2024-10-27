@@ -8,9 +8,9 @@ module com.sogeor.validation {
     requires com.sogeor.throwable;
     requires org.jetbrains.annotations;
 
+    exports com.sogeor.validation;
     exports com.sogeor.validation.argument;
     exports com.sogeor.validation.condition;
     exports com.sogeor.validation.field;
     exports com.sogeor.validation.variable;
-    exports com.sogeor.validation;
 }
