@@ -3,6 +3,7 @@
  * {@linkplain java.lang.Error}.
  *
  * @see com.sogeor.throwable
+ * @see com.sogeor.throwable.failure.utility
  * @see com.sogeor.throwable.failure.CheckedFailure
  * @see com.sogeor.throwable.failure.UncheckedFailure
  * @since 1.0.0-RC1

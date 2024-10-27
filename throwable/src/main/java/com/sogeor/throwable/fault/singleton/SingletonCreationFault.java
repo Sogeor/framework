@@ -1,46 +1,30 @@
-package com.sogeor.throwable.failure;
+package com.sogeor.throwable.fault.singleton;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемый сбой программы, то есть сбой, который может быть перехвачен и обработан или передан
- * дальше.
+ * Представляет собой непроверяемую неисправность программы, возникающую при попытке создания второго и последующих
+ * экземпляров класса, который спроектирован согласно порождающему шаблону проектирования — одиночке.
  *
- * @apiNote При его обработке следует завершать работу программы, потому что он подразумевает наличие критических
- * неисправностей, исправление или игнорирование которых может привести к неопределённому поведению программы.
- * @see CheckedFailure
  * @since 1.0.0-RC1
  */
-public class UncheckedFailure extends Error {
+public class SingletonCreationFault extends SingletonFault {
 
     /**
      * Представляет собой сообщение по умолчанию.
      *
      * @since 1.0.0-RC1
      */
-    public static final @Nullable String DEFAULT_MESSAGE = null;
+    public static final @NotNull String DEFAULT_MESSAGE = "A second or more instances of the singleton class mustn't be created";
 
     /**
-     * Представляет собой причину возникновения по умолчанию.
+     * Представляет собой шаблонное сообщение.
      *
      * @since 1.0.0-RC1
      */
-    public static final @Nullable Throwable DEFAULT_CAUSE = null;
-
-    /**
-     * Представляет собой параметр подавления по умолчанию.
-     *
-     * @since 1.0.0-RC1
-     */
-    public static final boolean DEFAULT_SUPPRESSION = true;
-
-    /**
-     * Представляет собой параметр трассировки стека по умолчанию.
-     *
-     * @since 1.0.0-RC1
-     */
-    public static final boolean DEFAULT_STACK_TRACE = true;
+    public static final @NotNull String TEMPLATE_MESSAGE = "A second or more instances of %s mustn't be created";
 
     /**
      * Представляет собой конструктор по умолчанию.
@@ -48,7 +32,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure() {
+    public SingletonCreationFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -60,7 +44,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final @Nullable String message) {
+    public SingletonCreationFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -72,7 +56,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final @Nullable Throwable cause) {
+    public SingletonCreationFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -85,7 +69,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final @Nullable String message, final @Nullable Throwable cause) {
+    public SingletonCreationFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -98,7 +82,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final boolean suppression, final boolean stackTrace) {
+    public SingletonCreationFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
@@ -114,8 +98,8 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
-                            final boolean stackTrace) {
+    public SingletonCreationFault(final @Nullable String message, final @Nullable Throwable cause,
+                                  final boolean suppression, final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
     }
 

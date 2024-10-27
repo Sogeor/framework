@@ -3,6 +3,7 @@
  * {@linkplain java.lang.RuntimeException}.
  *
  * @see com.sogeor.throwable
+ * @see com.sogeor.throwable.fault.singleton
  * @see com.sogeor.throwable.fault.CheckedFault
  * @see com.sogeor.throwable.fault.UncheckedFault
  * @since 1.0.0-RC1

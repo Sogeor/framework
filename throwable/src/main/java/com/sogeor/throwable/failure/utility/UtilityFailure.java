@@ -1,15 +1,15 @@
-package com.sogeor.common.singleton;
+package com.sogeor.throwable.failure.utility;
 
+import com.sogeor.throwable.failure.CheckedFailure;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую при попытке получения ещё не созданного
- * экземпляра класса, который спроектирован согласно порождающему шаблону проектирования — одиночке.
+ * Представляет собой проверяемый сбой программы, возникающий при работе с утилитарным классом.
  *
  * @since 1.0.0-RC1
  */
-public class SingletonInstanceFault extends SingletonFault {
+public class UtilityFailure extends CheckedFailure {
 
     /**
      * Представляет собой конструктор по умолчанию.
@@ -17,7 +17,7 @@ public class SingletonInstanceFault extends SingletonFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public SingletonInstanceFault() {
+    public UtilityFailure() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -29,7 +29,7 @@ public class SingletonInstanceFault extends SingletonFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public SingletonInstanceFault(final @Nullable String message) {
+    public UtilityFailure(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -41,7 +41,7 @@ public class SingletonInstanceFault extends SingletonFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public SingletonInstanceFault(final @Nullable Throwable cause) {
+    public UtilityFailure(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -54,7 +54,7 @@ public class SingletonInstanceFault extends SingletonFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public SingletonInstanceFault(final @Nullable String message, final @Nullable Throwable cause) {
+    public UtilityFailure(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -67,7 +67,7 @@ public class SingletonInstanceFault extends SingletonFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public SingletonInstanceFault(final boolean suppression, final boolean stackTrace) {
+    public UtilityFailure(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
@@ -83,8 +83,8 @@ public class SingletonInstanceFault extends SingletonFault {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public SingletonInstanceFault(final @Nullable String message, final @Nullable Throwable cause,
-                                  final boolean suppression, final boolean stackTrace) {
+    public UtilityFailure(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                          final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
     }
 

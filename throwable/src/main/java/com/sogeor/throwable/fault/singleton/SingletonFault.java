@@ -1,46 +1,16 @@
-package com.sogeor.throwable.failure;
+package com.sogeor.throwable.fault.singleton;
 
+import com.sogeor.throwable.fault.UncheckedFault;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемый сбой программы, то есть сбой, который может быть перехвачен и обработан или передан
- * дальше.
+ * Представляет собой непроверяемую неисправность программы, возникающую при работе с классом, который спроектирован
+ * согласно порождающему шаблону проектирования — одиночке.
  *
- * @apiNote При его обработке следует завершать работу программы, потому что он подразумевает наличие критических
- * неисправностей, исправление или игнорирование которых может привести к неопределённому поведению программы.
- * @see CheckedFailure
  * @since 1.0.0-RC1
  */
-public class UncheckedFailure extends Error {
-
-    /**
-     * Представляет собой сообщение по умолчанию.
-     *
-     * @since 1.0.0-RC1
-     */
-    public static final @Nullable String DEFAULT_MESSAGE = null;
-
-    /**
-     * Представляет собой причину возникновения по умолчанию.
-     *
-     * @since 1.0.0-RC1
-     */
-    public static final @Nullable Throwable DEFAULT_CAUSE = null;
-
-    /**
-     * Представляет собой параметр подавления по умолчанию.
-     *
-     * @since 1.0.0-RC1
-     */
-    public static final boolean DEFAULT_SUPPRESSION = true;
-
-    /**
-     * Представляет собой параметр трассировки стека по умолчанию.
-     *
-     * @since 1.0.0-RC1
-     */
-    public static final boolean DEFAULT_STACK_TRACE = true;
+public class SingletonFault extends UncheckedFault {
 
     /**
      * Представляет собой конструктор по умолчанию.
@@ -48,7 +18,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure() {
+    public SingletonFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -60,7 +30,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final @Nullable String message) {
+    public SingletonFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -72,7 +42,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final @Nullable Throwable cause) {
+    public SingletonFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -85,7 +55,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final @Nullable String message, final @Nullable Throwable cause) {
+    public SingletonFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -98,7 +68,7 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final boolean suppression, final boolean stackTrace) {
+    public SingletonFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
@@ -114,8 +84,8 @@ public class UncheckedFailure extends Error {
      * @since 1.0.0-RC1
      */
     @Contract(pure = true)
-    public UncheckedFailure(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
-                            final boolean stackTrace) {
+    public SingletonFault(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                          final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
     }
 

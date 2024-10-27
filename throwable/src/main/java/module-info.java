@@ -8,5 +8,7 @@ module com.sogeor.throwable {
     requires org.jetbrains.annotations;
 
     exports com.sogeor.throwable.failure;
+    exports com.sogeor.throwable.failure.utility;
     exports com.sogeor.throwable.fault;
+    exports com.sogeor.throwable.fault.singleton;
 }
