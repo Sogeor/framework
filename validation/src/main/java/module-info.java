@@ -1,5 +1,5 @@
 /**
- * Представляет собой модуль для валидации аргументов, условий, полей и переменных.
+ * Представляет собой модуль для валидации аргументов, условий, полей, значений и переменных.
  *
  * @see com.sogeor.validation
  * @since 1.0.0-RC1
@@ -12,5 +12,6 @@ module com.sogeor.validation {
     exports com.sogeor.validation.argument;
     exports com.sogeor.validation.condition;
     exports com.sogeor.validation.field;
+    exports com.sogeor.validation.value;
     exports com.sogeor.validation.variable;
 }

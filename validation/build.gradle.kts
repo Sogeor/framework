@@ -4,7 +4,7 @@ plugins {
 
 group = rootProject.group
 version = rootProject.version
-description = "Представляет собой модуль для валидации аргументов, условий, полей и переменных."
+description = "Представляет собой модуль для валидации аргументов, условий, полей, значений и переменных."
 
 repositories {
     mavenCentral()
