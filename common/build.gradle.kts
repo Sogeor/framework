@@ -12,7 +12,9 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":function"))
     implementation(project(":throwable"))
+    implementation(project(":validation"))
 
     implementation("org.jetbrains:annotations:24.1.0")
 }
