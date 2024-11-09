@@ -6,11 +6,22 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
+ * Этот утилитарный класс представляет собой валидатор аргументов методов и конструкторов.
+ *
+ * @see #isNull(Object)
+ * @see #isNull(Object, String)
+ * @see #notNull(Object)
+ * @see #notNull(Object, String)
  * @since 1.0.0-RC1
  */
 public final class ArgumentValidator {
 
     /**
+     * Генерирует проверяемый сбой.
+     *
+     * @throws UtilityCreationFailure не допускается создание хотя бы одного экземпляра утилитарного класса.
+     * @apiNote Этот конструктор предназначен для предотвращения создания хотя бы одного экземпляра этого утилитарного
+     * класса.
      * @since 1.0.0-RC1
      */
     private ArgumentValidator() throws UtilityCreationFailure {
@@ -19,6 +30,12 @@ public final class ArgumentValidator {
     }
 
     /**
+     * Валидирует объект и, если он нулевой, возвращает его, в противном случае генерирует непроверяемую неисправность.
+     *
+     * @param object объект.
+     * @param <T> тип объекта.
+     *
+     * @throws NonNullArgumentValidationFault не допускается, чтобы объект был ненулевым.
      * @see #isNull(Object, String)
      * @since 1.0.0-RC1
      */
@@ -29,6 +46,14 @@ public final class ArgumentValidator {
     }
 
     /**
+     * Валидирует объект и, если он нулевой, возвращает его, в противном случае генерирует непроверяемую неисправность с
+     * шаблонным сообщением на основе имени объекта.
+     *
+     * @param object объект.
+     * @param name имя объекта.
+     * @param <T> тип объекта.
+     *
+     * @throws NonNullArgumentValidationFault не допускается, чтобы объект был ненулевым.
      * @see #isNull(Object)
      * @since 1.0.0-RC1
      */
@@ -41,6 +66,13 @@ public final class ArgumentValidator {
     }
 
     /**
+     * Валидирует объект и, если он ненулевой, возвращает его, в противном случае генерирует непроверяемую
+     * неисправность.
+     *
+     * @param object объект.
+     * @param <T> тип объекта.
+     *
+     * @throws NullArgumentValidationFault не допускается, чтобы объект был нулевым.
      * @see #notNull(Object, String)
      * @since 1.0.0-RC1
      */
@@ -51,6 +83,14 @@ public final class ArgumentValidator {
     }
 
     /**
+     * Валидирует объект и, если он ненулевой, возвращает его, в противном случае генерирует непроверяемую неисправность
+     * с шаблонным сообщением на основе имени объекта.
+     *
+     * @param object объект.
+     * @param name имя объекта.
+     * @param <T> тип объекта.
+     *
+     * @throws NullArgumentValidationFault не допускается, чтобы объект был нулевым.
      * @see #notNull(Object)
      * @since 1.0.0-RC1
      */
