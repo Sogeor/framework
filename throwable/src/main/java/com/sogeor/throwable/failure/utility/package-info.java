@@ -1,5 +1,5 @@
 /**
- * Представляет собой пакет для работы с утилитарными классами.
+ * Представляет собой пакет для работы с программными сбоями, связанными с утилитарными классами.
  *
  * @see com.sogeor.throwable.failure
  * @see com.sogeor.throwable.failure.utility.UtilityCreationFailure

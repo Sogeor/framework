@@ -5,8 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую при попытке получения ещё не созданного
- * экземпляра класса, который спроектирован согласно порождающему шаблону проектирования — одиночке.
+ * Представляет собой непроверяемую программную неисправность, возникающую при попытке получения несозданного экземпляра
+ * класса, который спроектирован согласно порождающему шаблону проектирования — одиночке.
  *
  * @since 1.0.0-RC1
  */
@@ -17,14 +17,14 @@ public class SingletonInstanceFault extends SingletonFault {
      *
      * @since 1.0.0-RC1
      */
-    public static final @NotNull String DEFAULT_MESSAGE = "An instance of the singleton class hasn't been created yet";
+    public static final @NotNull String DEFAULT_MESSAGE = "An instance of the singleton class hasn't been created";
 
     /**
      * Представляет собой шаблонное сообщение.
      *
      * @since 1.0.0-RC1
      */
-    public static final @NotNull String TEMPLATE_MESSAGE = "An instance of %s hasn't been created yet";
+    public static final @NotNull String TEMPLATE_MESSAGE = "An instance of %s hasn't been created";
 
     /**
      * Представляет собой конструктор по умолчанию.
