@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
+package com.sogeor.function;
+
+import com.sogeor.validation.ValidationFault;
+import org.jetbrains.annotations.NotNull;
+
 /**
- * Представляет собой пакет для работы с функциями.
- *
- * @see com.sogeor.function
- * @see com.sogeor.function.Callback
- * @see com.sogeor.function.Supplier
  * @since 1.0.0-RC1
  */
-package com.sogeor.function;
+@FunctionalInterface
+public interface Consumer<T, F extends Throwable> {
+
+    /**
+     * @since 1.0.0-RC1
+     */
+    void consume(final @NotNull T object) throws ValidationFault, F;
+
+}

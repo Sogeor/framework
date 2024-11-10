@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
+package com.sogeor.function;
+
+import org.jetbrains.annotations.NotNull;
+
 /**
- * Представляет собой пакет для работы с функциями.
- *
- * @see com.sogeor.function
- * @see com.sogeor.function.Callback
- * @see com.sogeor.function.Supplier
  * @since 1.0.0-RC1
  */
-package com.sogeor.function;
+@FunctionalInterface
+public interface Handler<T, R, F extends Throwable> {
+
+    /**
+     * @since 1.0.0-RC1
+     */
+    @NotNull R handle(final @NotNull T object) throws F;
+
+}
