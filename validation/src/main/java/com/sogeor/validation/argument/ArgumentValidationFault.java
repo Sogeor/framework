@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую из-за ошибки валидации аргумента.
+ * Представляет собой непроверяемую программную неисправность, возникающую при неудачной валидации аргумента.
  *
  * @since 1.0.0-RC1
  */
@@ -17,7 +17,7 @@ public class ArgumentValidationFault extends ValidationFault {
      *
      * @since 1.0.0-RC1
      */
-    public static final @NotNull String DEFAULT_MESSAGE = "Failed to validate the passed argument";
+    public static final @NotNull String DEFAULT_MESSAGE = "Failed to validate the argument";
 
     /**
      * Представляет собой конструктор по умолчанию.
