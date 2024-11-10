@@ -5,8 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую из-за ошибки валидации ненулевого аргумента, то
- * есть аргумента, который должен быть нулевым, но таковым не является.
+ * Представляет собой непроверяемую программную неисправность, возникающую при неудачной валидации аргумента, который
+ * должен быть нулевым, но таковым не является.
  *
  * @since 1.0.0-RC1
  */
@@ -17,7 +17,7 @@ public class NonNullArgumentValidationFault extends ArgumentValidationFault {
      *
      * @since 1.0.0-RC1
      */
-    public static final @NotNull String DEFAULT_MESSAGE = "The passed argument must be null";
+    public static final @NotNull String DEFAULT_MESSAGE = "The argument must be null";
 
     /**
      * Представляет собой шаблонное сообщение.
