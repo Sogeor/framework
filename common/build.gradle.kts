@@ -4,8 +4,7 @@ plugins {
 
 group = rootProject.group
 version = rootProject.version
-description =
-    "Представляет собой модуль для работы с общими инструментами."
+description = "Представляет собой модуль для работы с общими инструментами."
 
 repositories {
     mavenCentral()
