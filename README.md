@@ -30,15 +30,15 @@
 
 | Название \ Категория | Проверяемый(-ая) | Непроверяемый(-ая) |
 |:---------------------|:-----------------|:-------------------|
-| Сбой                 | `CheckedFault`   | `UncheckedFault`   |
-| Неисправность        | `CheckedFailure` | `UncheckedFailure` |
+| Сбой                 | `CheckedFailure` | `UncheckedFailure` |
+| Неисправность        | `CheckedFault`   | `UncheckedFault`   |
 
 | Расширяющее представление | Расширяемое представление |
 |:--------------------------|:--------------------------|
-| `CheckedFault`            | `Exception`               |
-| `UncheckedFault`          | `RuntimeException`        |
 | `CheckedFailure`          | `Throwable`               |
 | `UncheckedFailure`        | `Error`                   |
+| `CheckedFault`            | `Exception`               |
+| `UncheckedFault`          | `RuntimeException`        |
 
 ### `com.sogeor.validation`
 
