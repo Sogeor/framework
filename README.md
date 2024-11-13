@@ -1,5 +1,8 @@
 # Sogeor Framework
 
+[![RELEASE](https://img.shields.io/github/v/release/sogeor/framework?style=for-the-badge)](https://github.com/sogeor/framework/releases/latest)
+[![CI/CD](https://img.shields.io/github/actions/workflow/status/sogeor/framework/master.yml?style=for-the-badge&label=CI%2FCD)](https://github.com/sogeor/framework/actions/workflows/master.yml)
+
 ## Введение
 
 Проект, то есть Sogeor Framework, состоит из нескольких взаимосвязанных подпроектов, называемых модулями. Каждый модуль
