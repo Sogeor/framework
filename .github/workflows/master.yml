@@ -32,7 +32,7 @@ jobs:
         with:
           java-version: 21
           distribution: temurin
-          java-package: jre
+          java-package: jdk+fx
       - name: "Подготовка Gradle"
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -54,7 +54,7 @@ jobs:
 #        with:
 #          java-version: 21
 #          distribution: temurin
-#          java-package: jre
+#          java-package: jdk+fx
 #      - name: "Подготовка Gradle"
 #        uses: gradle/actions/setup-gradle@v4
 #        with:
