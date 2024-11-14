@@ -21,8 +21,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую из-за ошибки валидации нулевого значения, то
- * есть значения, которое не должно быть нулевым, но таковым является.
+ * Представляет собой непроверяемую программную неисправность, возникающую при неудачной валидации анонимного значения,
+ * которое должно быть ненулевым, но таковым не является.
  *
  * @since 1.0.0-RC1
  */
@@ -33,7 +33,7 @@ public class NullValueValidationFault extends ValueValidationFault {
      *
      * @since 1.0.0-RC1
      */
-    public static final @NotNull String DEFAULT_MESSAGE = "The passed value mustn't be null";
+    public static final @NotNull String DEFAULT_MESSAGE = "The anonymous value mustn't be null";
 
     /**
      * Представляет собой шаблонное сообщение.
