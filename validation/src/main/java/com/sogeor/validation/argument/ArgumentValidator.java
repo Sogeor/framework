@@ -39,6 +39,7 @@ public final class ArgumentValidator {
      * @apiNote Этот конструктор предназначен для предотвращения создания экземпляра этого утилитарного класса.
      * @since 1.0.0-RC1
      */
+    @Contract("-> fail")
     private ArgumentValidator() throws UtilityCreationFailure {
         throw new UtilityCreationFailure(
                 UtilityCreationFailure.TEMPLATE_MESSAGE.formatted("the ArgumentValidator utility class"));
