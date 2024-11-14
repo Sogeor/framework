@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую из-за ошибки валидации значения.
+ * Представляет собой непроверяемую программную неисправность, возникающую при неудачной валидации анонимного значения.
  *
  * @since 1.0.0-RC1
  */
@@ -33,7 +33,7 @@ public class ValueValidationFault extends ValidationFault {
      *
      * @since 1.0.0-RC1
      */
-    public static final @NotNull String DEFAULT_MESSAGE = "Failed to validate the passed value";
+    public static final @NotNull String DEFAULT_MESSAGE = "Failed to validate the anonymous value";
 
     /**
      * Представляет собой конструктор по умолчанию.
