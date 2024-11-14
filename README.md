@@ -70,5 +70,7 @@
 | Аргумент метода или конструктора должен быть ненулевым, но таковым не является. | `NullArgumentValidationFault`           |
 | Невалидность истинности и ложности условия.                                     | `ConditionValidationFault`              |
 | Невалидность значения поля.                                                     | `FieldValidationFault`                  |
+| Анонимное значение должно быть нулевым, но таковым не является.                 | `NonNullValueValidationFault`           |
+| Анонимное значение должно быть ненулевым, но таковым не является.               | `NullValueValidationFault`              |
 | Невалидность анонимного значения.                                               | `ValueValidationFault`                  |
 | Невалидность значения переменной.                                               | `VariableValidationFault`               |
