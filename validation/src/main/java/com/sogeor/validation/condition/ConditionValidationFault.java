@@ -22,7 +22,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую из-за ошибки валидации условия.
+ * Представляет собой непроверяемую программную неисправность, возникающую при неудачной валидации истинности или
+ * ложности условия.
  *
  * @since 1.0.0-RC1
  */
@@ -33,7 +34,7 @@ public class ConditionValidationFault extends ValidationFault {
      *
      * @since 1.0.0-RC1
      */
-    public static final @NotNull String DEFAULT_MESSAGE = "Failed to validate the passed condition";
+    public static final @NotNull String DEFAULT_MESSAGE = "Failed to validate truth or falsity of the condition";
 
     /**
      * Представляет собой конструктор по умолчанию.
