@@ -15,8 +15,7 @@
  */
 
 /**
- * Представляет собой пакет для работы с программными неисправностями, основанными на {@linkplain java.lang.Exception} и
- * {@linkplain java.lang.RuntimeException}.
+ * Предоставляет фундаментальные программные неисправности.
  *
  * @see com.sogeor.throwable
  * @see com.sogeor.throwable.fault.singleton
