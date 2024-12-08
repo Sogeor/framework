@@ -10,20 +10,78 @@
 
 ## Модули
 
-### `com.sogeor.annotation`
+### `com.sogeor.framework.annotation`
 
 #### Описание
 
 Предоставляет фундаментальные аннотации, на которых основываются все модули проекта.
 
-### `com.sogeor.throwable`
+### `com.sogeor.framework.collection`
 
 #### Описание
 
-Предоставляет фундаментальные программные сбои и неисправности, на которых основываются все модули проекта.
+Предоставляет фундаментальные коллекции, на которых основывается большинство модулей проекта.
 
-### `com.sogeor.validation`
+#### Зависимости
+
+| Идентификатор                     |
+|:----------------------------------|
+| `com.sogeor.framework.annotation` |
+| `com.sogeor.framework.common`     |
+| `com.sogeor.framework.function`   |
+| `com.sogeor.framework.throwable`  |
+| `com.sogeor.framework.validation` |
+
+### `com.sogeor.framework.common`
 
 #### Описание
 
-Предоставляет инструменты для валидации объектов и значений, на которых основываются все модули проекта.
+Предоставляет фундаментальные инструменты, на которых основывается большинство модулей проекта.
+
+#### Зависимости
+
+| Идентификатор                     |
+|:----------------------------------|
+| `com.sogeor.framework.annotation` |
+| `com.sogeor.framework.function`   |
+| `com.sogeor.framework.throwable`  |
+| `com.sogeor.framework.validation` |
+
+### `com.sogeor.framework.function`
+
+#### Описание
+
+Предоставляет функциональные инструменты, на которых основывается большинство модулей проекта.
+
+#### Зависимости
+
+| Идентификатор                     |
+|:----------------------------------|
+| `com.sogeor.framework.annotation` |
+| `com.sogeor.framework.throwable`  |
+| `com.sogeor.framework.validation` |
+
+### `com.sogeor.framework.throwable`
+
+#### Описание
+
+Предоставляет фундаментальные программные сбои и неисправности, на которых основывается большинство модулей проекта.
+
+#### Зависимости
+
+| Идентификатор                     |
+|:----------------------------------|
+| `com.sogeor.framework.annotation` |
+
+### `com.sogeor.framework.validation`
+
+#### Описание
+
+Предоставляет инструменты для валидации объектов и значений, на которых основывается большинство модулей проекта.
+
+#### Зависимости
+
+| Идентификатор                     |
+|:----------------------------------|
+| `com.sogeor.framework.annotation` |
+| `com.sogeor.framework.throwable`  |
