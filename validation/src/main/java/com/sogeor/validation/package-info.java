@@ -17,7 +17,9 @@
 /**
  * Предоставляет инструменты для валидации объектов и значений.
  *
+ * @see com.sogeor.validation.EqualValidationFault
  * @see com.sogeor.validation.FalseValidationFault
+ * @see com.sogeor.validation.NonEqualValidationFault
  * @see com.sogeor.validation.NonNullValidationFault
  * @see com.sogeor.validation.NullValidationFault
  * @see com.sogeor.validation.TrueValidationFault
