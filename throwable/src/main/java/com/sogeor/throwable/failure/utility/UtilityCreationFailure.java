@@ -32,14 +32,14 @@ public class UtilityCreationFailure extends UtilityFailure {
      *
      * @since 1.0.0-RC1
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "An instance of the utility class mustn't be created";
+    public static final @NonNull String DEFAULT_MESSAGE = "An instance of the utility class must not be created";
 
     /**
      * Содержит шаблонное сообщение.
      *
      * @since 1.0.0-RC1
      */
-    public static final @NonNull String TEMPLATE_MESSAGE = "An instance of %s mustn't be created";
+    public static final @NonNull String TEMPLATE_MESSAGE = "An instance of %s must not be created";
 
     /**
      * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением}, {@linkplain #DEFAULT_CAUSE причиной возникновения},
