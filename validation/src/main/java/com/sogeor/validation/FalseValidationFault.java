@@ -21,7 +21,7 @@ import com.sogeor.annotation.NonNull;
 import com.sogeor.annotation.Nullable;
 
 /**
- * Представляет собой непроверяемую программную неисправность, связанную с неудачной валидацией истинности условия.
+ * Представляет собой непроверяемую программную неисправность, связанную с неудачной валидацией истинности значения.
  *
  * @see TrueValidationFault
  * @since 1.0.0-RC1
@@ -33,7 +33,7 @@ public class FalseValidationFault extends ValidationFault {
      *
      * @since 1.0.0-RC1
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "The condition must be true";
+    public static final @NonNull String DEFAULT_MESSAGE = "The value must be true";
 
     /**
      * Содержит шаблонное сообщение.
