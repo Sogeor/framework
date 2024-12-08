@@ -15,17 +15,16 @@
  */
 
 /**
- * Представляет собой модуль для работы с общими инструментами.
+ * Предоставляет фундаментальные инструменты.
  *
- * @see com.sogeor.common
  * @since 1.0.0-RC1
  */
-module com.sogeor.common {
-    requires com.sogeor.function;
-    requires com.sogeor.throwable;
-    requires com.sogeor.validation;
-    requires org.jetbrains.annotations;
+module com.sogeor.framework.common {
+    requires com.sogeor.framework.annotation;
+    requires com.sogeor.framework.function;
+    requires com.sogeor.framework.throwable;
+    requires com.sogeor.framework.validation;
 
-    exports com.sogeor.common.optional;
-    exports com.sogeor.common;
+    exports com.sogeor.framework.common;
+    exports com.sogeor.framework.common.optional;
 }

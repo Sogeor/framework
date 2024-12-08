@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package com.sogeor.common.optional;
+package com.sogeor.framework.common;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.Nullable;
+import com.sogeor.framework.throwable.fault.UncheckedFault;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую при работе с классом, который спроектирован
- * согласно порождающему шаблону проектирования — одиночке.
+ * Представляет собой непроверяемую неисправность программы, возникающую при работе с общими инструментами.
  *
  * @since 1.0.0-RC1
  */
-public class OptionalInstanceFault extends OptionalFault {
+public class CommonFault extends UncheckedFault {
 
     /**
      * Представляет собой конструктор по умолчанию.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public OptionalInstanceFault() {
+    @Contract("?")
+    public CommonFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -44,8 +44,8 @@ public class OptionalInstanceFault extends OptionalFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public OptionalInstanceFault(final @Nullable String message) {
+    @Contract("?")
+    public CommonFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -56,8 +56,8 @@ public class OptionalInstanceFault extends OptionalFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public OptionalInstanceFault(final @Nullable Throwable cause) {
+    @Contract("?")
+    public CommonFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -69,8 +69,8 @@ public class OptionalInstanceFault extends OptionalFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public OptionalInstanceFault(final @Nullable String message, final @Nullable Throwable cause) {
+    @Contract("?")
+    public CommonFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -82,8 +82,8 @@ public class OptionalInstanceFault extends OptionalFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public OptionalInstanceFault(final boolean suppression, final boolean stackTrace) {
+    @Contract("?")
+    public CommonFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
@@ -98,9 +98,9 @@ public class OptionalInstanceFault extends OptionalFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public OptionalInstanceFault(final @Nullable String message, final @Nullable Throwable cause,
-                                 final boolean suppression, final boolean stackTrace) {
+    @Contract("?")
+    public CommonFault(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                       final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
     }
 

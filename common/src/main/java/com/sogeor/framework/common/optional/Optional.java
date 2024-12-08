@@ -14,21 +14,20 @@
  * limitations under the License.
  */
 
-package com.sogeor.common.optional;
+package com.sogeor.framework.common.optional;
 
-import com.sogeor.function.Callback;
-import com.sogeor.function.Consumer;
-import com.sogeor.function.Supplier;
-import com.sogeor.throwable.failure.CheckedFailure;
-import com.sogeor.throwable.failure.UncheckedFailure;
-import com.sogeor.throwable.fault.CheckedFault;
-import com.sogeor.throwable.fault.UncheckedFault;
-import com.sogeor.validation.ValidationFault;
-import com.sogeor.validation.argument.ArgumentValidator;
-import com.sogeor.validation.value.ValueValidator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.annotation.Nullable;
+import com.sogeor.framework.function.Callback;
+import com.sogeor.framework.function.Consumer;
+import com.sogeor.framework.function.Supplier;
+import com.sogeor.framework.throwable.failure.CheckedFailure;
+import com.sogeor.framework.throwable.failure.UncheckedFailure;
+import com.sogeor.framework.throwable.fault.CheckedFault;
+import com.sogeor.framework.throwable.fault.UncheckedFault;
+import com.sogeor.framework.validation.ValidationFault;
+import com.sogeor.framework.validation.Validator;
 
 /**
  * Представляет собой класс-обёртку, который содержит либо ненулевой, либо нулевой объёкт.
@@ -45,7 +44,7 @@ public final class Optional<T> {
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public Optional() {
         this(null);
     }
@@ -53,7 +52,7 @@ public final class Optional<T> {
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public Optional(final @Nullable T object) {
         this.object = object;
     }
@@ -61,7 +60,7 @@ public final class Optional<T> {
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public @Nullable T get() {
         return object;
     }
@@ -69,7 +68,7 @@ public final class Optional<T> {
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public boolean empty() {
         return object == null;
     }
@@ -77,7 +76,7 @@ public final class Optional<T> {
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public boolean contains() {
         return object != null;
     }
@@ -85,61 +84,60 @@ public final class Optional<T> {
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public @NotNull T orPassed(final @NotNull T object) throws ValidationFault {
-        ArgumentValidator.notNull(object, "The passed object");
+    @Contract("?")
+    public @NonNull T orPassed(final @NonNull T object) throws ValidationFault {
+        Validator.nonNull(object, "The passed object");
         return contains() ? this.object : object;
     }
 
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public <F extends Throwable> @NotNull T orSupplied(final @NotNull Supplier<T, F> supplier) throws ValidationFault,
+    @Contract("?")
+    public <F extends Throwable> @NonNull T orSupplied(final @NonNull Supplier<T, F> supplier) throws ValidationFault,
                                                                                                       F {
-        ArgumentValidator.notNull(supplier, "The passed supplier");
-        return contains() ? object :
-               ValueValidator.notNull(supplier.supply(), "An object supplied by the passed supplier");
+        Validator.nonNull(supplier, "The passed supplier");
+        return contains() ? object : Validator.nonNull(supplier.supply(), "An object supplied by the passed supplier");
     }
 
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public <RF extends CheckedFailure, F extends Throwable> @NotNull T orCheckedFailure(
-            final @NotNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
-        ArgumentValidator.notNull(supplier, "The passed supplier");
+    @Contract("?")
+    public <RF extends CheckedFailure, F extends Throwable> @NonNull T orCheckedFailure(
+            final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
+        Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw ValueValidator.notNull(supplier.supply(), "A checked failure supplied by the passed supplier");
+        throw Validator.nonNull(supplier.supply(), "A checked failure supplied by the passed supplier");
     }
 
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public <RF extends UncheckedFailure, F extends Throwable> @NotNull T orUncheckedFailure(
-            final @NotNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
-        ArgumentValidator.notNull(supplier, "The passed supplier");
+    @Contract("?")
+    public <RF extends UncheckedFailure, F extends Throwable> @NonNull T orUncheckedFailure(
+            final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
+        Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw ValueValidator.notNull(supplier.supply(), "A unchecked failure supplied by the passed supplier");
+        throw Validator.nonNull(supplier.supply(), "A unchecked failure supplied by the passed supplier");
     }
 
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public <RF extends CheckedFault, F extends Throwable> @NotNull T orCheckedFault(
-            final @NotNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
-        ArgumentValidator.notNull(supplier, "The passed supplier");
+    @Contract("?")
+    public <RF extends CheckedFault, F extends Throwable> @NonNull T orCheckedFault(
+            final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
+        Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw ValueValidator.notNull(supplier.supply(), "A checked fault supplied by the passed supplier");
+        throw Validator.nonNull(supplier.supply(), "A checked fault supplied by the passed supplier");
     }
 
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public @NotNull T orUncheckedFault() throws OptionalInstanceFault {
+    @Contract("?")
+    public @NonNull T orUncheckedFault() throws OptionalInstanceFault {
         if (contains()) return object;
         throw new OptionalInstanceFault();
     }
@@ -147,33 +145,33 @@ public final class Optional<T> {
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public <RF extends UncheckedFault, F extends Throwable> @NotNull T orUncheckedFault(
-            final @NotNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
-        ArgumentValidator.notNull(supplier, "The passed supplier");
+    @Contract("?")
+    public <RF extends UncheckedFault, F extends Throwable> @NonNull T orUncheckedFault(
+            final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
+        Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw ValueValidator.notNull(supplier.supply(), "A unchecked fault supplied by the passed supplier");
+        throw Validator.nonNull(supplier.supply(), "A unchecked fault supplied by the passed supplier");
     }
 
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public <RF extends Throwable, F extends Throwable> @NotNull T orThrowable(
-            final @NotNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
-        ArgumentValidator.notNull(supplier, "The passed supplier");
+    @Contract("?")
+    public <RF extends Throwable, F extends Throwable> @NonNull T orThrowable(
+            final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
+        Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw ValueValidator.notNull(supplier.supply(), "A throwable supplied by the passed supplier");
+        throw Validator.nonNull(supplier.supply(), "A throwable supplied by the passed supplier");
     }
 
     /**
      * @since 1.0.0-RC1
      */
     @Contract("_ -> this")
-    public <F extends Throwable> @NotNull Optional<T> whenEmpty(final @NotNull Callback<F> callback) throws
+    public <F extends Throwable> @NonNull Optional<T> whenEmpty(final @NonNull Callback<F> callback) throws
                                                                                                      ValidationFault,
                                                                                                      F {
-        ArgumentValidator.notNull(callback, "The passed callback");
+        Validator.nonNull(callback, "The passed callback");
         if (empty()) callback.call();
         return this;
     }
@@ -182,10 +180,10 @@ public final class Optional<T> {
      * @since 1.0.0-RC1
      */
     @Contract("_ -> this")
-    public <F extends Throwable> @NotNull Optional<T> whenContains(final @NotNull Callback<F> callback) throws
+    public <F extends Throwable> @NonNull Optional<T> whenContains(final @NonNull Callback<F> callback) throws
                                                                                                         ValidationFault,
                                                                                                         F {
-        ArgumentValidator.notNull(callback, "The passed callback");
+        Validator.nonNull(callback, "The passed callback");
         if (contains()) callback.call();
         return this;
     }
@@ -194,10 +192,10 @@ public final class Optional<T> {
      * @since 1.0.0-RC1
      */
     @Contract("_ -> this")
-    public <F extends Throwable> @NotNull Optional<T> whenContains(final @NotNull Consumer<T, F> consumer) throws
+    public <F extends Throwable> @NonNull Optional<T> whenContains(final @NonNull Consumer<T, F> consumer) throws
                                                                                                            ValidationFault,
                                                                                                            F {
-        ArgumentValidator.notNull(consumer, "The passed consumer");
+        Validator.nonNull(consumer, "The passed consumer");
         if (contains()) consumer.consume(object);
         return this;
     }

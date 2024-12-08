@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.sogeor.common.optional;
+package com.sogeor.framework.common.optional;
 
-import com.sogeor.common.CommonFault;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
+import com.sogeor.framework.common.CommonFault;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.Nullable;
 
 /**
  * Представляет собой непроверяемую неисправность программы, возникающую при работе с классом, который спроектирован
@@ -33,7 +33,7 @@ public class OptionalFault extends CommonFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public OptionalFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
@@ -45,7 +45,7 @@ public class OptionalFault extends CommonFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public OptionalFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
@@ -57,7 +57,7 @@ public class OptionalFault extends CommonFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public OptionalFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
@@ -70,7 +70,7 @@ public class OptionalFault extends CommonFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public OptionalFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
@@ -83,7 +83,7 @@ public class OptionalFault extends CommonFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public OptionalFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
@@ -99,7 +99,7 @@ public class OptionalFault extends CommonFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public OptionalFault(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
                          final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);

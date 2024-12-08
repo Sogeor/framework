@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package com.sogeor.common.container;
-
 /**
  * @since 1.0.0-RC1
  */
-public interface Container<T> {}
+package com.sogeor.framework.common.optional;
