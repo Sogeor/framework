@@ -15,7 +15,7 @@
  */
 
 /**
- * Представляет собой пакет для работы с программными сбоями, связанными с утилитарными классами.
+ * Предоставляет фундаментальные программные сбои, связанные с утилитарными классами.
  *
  * @see com.sogeor.throwable.failure
  * @see com.sogeor.throwable.failure.utility.UtilityCreationFailure
