@@ -14,13 +14,23 @@
  * limitations under the License.
  */
 
+package com.sogeor.annotation;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
- * Представляет собой пакет для валидации анонимных значений.
+ * Обозначает элемент, который обязан быть нулевым.
  *
- * @see com.sogeor.validation
- * @see com.sogeor.validation.value.NonNullValueValidationFault
- * @see com.sogeor.validation.value.NullValueValidationFault
- * @see com.sogeor.validation.value.ValueValidationFault
  * @since 1.0.0-RC1
  */
-package com.sogeor.validation.value;
+@Documented
+@Retention(RetentionPolicy.CLASS)
+@Target({
+        ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE, ElementType.TYPE_USE,
+        ElementType.RECORD_COMPONENT
+})
+public @interface Null {}
