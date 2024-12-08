@@ -17,13 +17,8 @@
 /**
  * Предоставляет фундаментальные программные сбои и неисправности.
  *
+ * @see com.sogeor.framework.throwable.failure
+ * @see com.sogeor.framework.throwable.fault
  * @since 1.0.0-RC1
  */
-module com.sogeor.framework.throwable {
-    requires com.sogeor.framework.annotation;
-
-    exports com.sogeor.framework.throwable.failure;
-    exports com.sogeor.framework.throwable.failure.utility;
-    exports com.sogeor.framework.throwable.fault;
-    exports com.sogeor.framework.throwable.fault.singleton;
-}
+package com.sogeor.framework.throwable;
