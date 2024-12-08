@@ -15,15 +15,14 @@
  */
 
 /**
- * Представляет собой пакет для валидации аргументов методов и конструкторов, истинности и ложности условий, значений
- * полей, анонимных значений, а также значений переменных.
+ * Предоставляет инструменты для валидации объектов и значений.
  *
- * @see com.sogeor.validation.argument
- * @see com.sogeor.validation.condition
- * @see com.sogeor.validation.field
- * @see com.sogeor.validation.value
- * @see com.sogeor.validation.variable
+ * @see com.sogeor.validation.FalseValidationFault
+ * @see com.sogeor.validation.NonNullValidationFault
+ * @see com.sogeor.validation.NullValidationFault
+ * @see com.sogeor.validation.TrueValidationFault
  * @see com.sogeor.validation.ValidationFault
+ * @see com.sogeor.validation.Validator
  * @since 1.0.0-RC1
  */
 package com.sogeor.validation;
