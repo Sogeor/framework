@@ -19,9 +19,9 @@
  *
  * @since 1.0.0-RC1
  */
-module com.sogeor.validation {
-    requires com.sogeor.annotation;
-    requires com.sogeor.throwable;
+module com.sogeor.framework.validation {
+    requires com.sogeor.framework.annotation;
+    requires com.sogeor.framework.throwable;
 
-    exports com.sogeor.validation;
+    exports com.sogeor.framework.validation;
 }

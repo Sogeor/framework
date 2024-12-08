@@ -14,49 +14,49 @@
  * limitations under the License.
  */
 
-package com.sogeor.validation;
+package com.sogeor.framework.validation;
 
-import com.sogeor.annotation.NonNull;
+import com.sogeor.framework.annotation.NonNull;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-final class TrueValidationFaultTest {
+final class NullValidationFaultTest {
 
     @Test
     void defaultMessageField() {
-        assertNotNull(TrueValidationFault.DEFAULT_MESSAGE);
+        assertNotNull(NullValidationFault.DEFAULT_MESSAGE);
     }
 
     @Test
     void templateMessageField() {
-        assertNotNull(TrueValidationFault.TEMPLATE_MESSAGE);
+        assertNotNull(NullValidationFault.TEMPLATE_MESSAGE);
     }
 
     @Test
     void defaultCauseField() {
-        assertNull(TrueValidationFault.DEFAULT_CAUSE);
+        assertNull(NullValidationFault.DEFAULT_CAUSE);
     }
 
     @Test
     void defaultSuppressionField() {
-        assertTrue(TrueValidationFault.DEFAULT_SUPPRESSION);
+        assertTrue(NullValidationFault.DEFAULT_SUPPRESSION);
     }
 
     @Test
     void defaultStackTraceField() {
-        assertTrue(TrueValidationFault.DEFAULT_STACK_TRACE);
+        assertTrue(NullValidationFault.DEFAULT_STACK_TRACE);
     }
 
     @Test
     void defaultConstructor() {
-        final @NonNull var instance = new TrueValidationFault();
+        final @NonNull var instance = new NullValidationFault();
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
-        assertEquals(TrueValidationFault.DEFAULT_MESSAGE, instance.getMessage());
-        assertEquals(TrueValidationFault.DEFAULT_CAUSE, instance.getCause());
+        assertEquals(NullValidationFault.DEFAULT_MESSAGE, instance.getMessage());
+        assertEquals(NullValidationFault.DEFAULT_CAUSE, instance.getCause());
         assertTrue(Arrays.asList(instance.getSuppressed()).contains(exception));
         assertNotEquals(0, instance.getStackTrace().length);
     }
@@ -64,11 +64,11 @@ final class TrueValidationFaultTest {
     @Test
     void constructorWithMessage() {
         final @NonNull var message = "The test message";
-        final @NonNull var instance = new TrueValidationFault(message);
+        final @NonNull var instance = new NullValidationFault(message);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
         assertEquals(message, instance.getMessage());
-        assertEquals(TrueValidationFault.DEFAULT_CAUSE, instance.getCause());
+        assertEquals(NullValidationFault.DEFAULT_CAUSE, instance.getCause());
         assertTrue(Arrays.asList(instance.getSuppressed()).contains(exception));
         assertNotEquals(0, instance.getStackTrace().length);
     }
@@ -76,10 +76,10 @@ final class TrueValidationFaultTest {
     @Test
     void constructorWithCause() {
         final @NonNull var cause = new Exception();
-        final @NonNull var instance = new TrueValidationFault(cause);
+        final @NonNull var instance = new NullValidationFault(cause);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
-        assertEquals(TrueValidationFault.DEFAULT_MESSAGE, instance.getMessage());
+        assertEquals(NullValidationFault.DEFAULT_MESSAGE, instance.getMessage());
         assertEquals(cause, instance.getCause());
         assertTrue(Arrays.asList(instance.getSuppressed()).contains(exception));
         assertNotEquals(0, instance.getStackTrace().length);
@@ -89,7 +89,7 @@ final class TrueValidationFaultTest {
     void constructorWithMessageAndCause() {
         final @NonNull var message = "The test message";
         final @NonNull var cause = new Exception();
-        final @NonNull var instance = new TrueValidationFault(message, cause);
+        final @NonNull var instance = new NullValidationFault(message, cause);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
         assertEquals(message, instance.getMessage());
@@ -100,11 +100,11 @@ final class TrueValidationFaultTest {
 
     @Test
     void constructorWithSuppressionAndStackTrace() {
-        final @NonNull var instance = new TrueValidationFault(false, false);
+        final @NonNull var instance = new NullValidationFault(false, false);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
-        assertEquals(TrueValidationFault.DEFAULT_MESSAGE, instance.getMessage());
-        assertEquals(TrueValidationFault.DEFAULT_CAUSE, instance.getCause());
+        assertEquals(NullValidationFault.DEFAULT_MESSAGE, instance.getMessage());
+        assertEquals(NullValidationFault.DEFAULT_CAUSE, instance.getCause());
         assertEquals(0, instance.getSuppressed().length);
         assertEquals(0, instance.getStackTrace().length);
     }
@@ -113,7 +113,7 @@ final class TrueValidationFaultTest {
     void constructorWithMessageAndCauseAndSuppressionAndStackTrace() {
         final @NonNull var message = "The test message";
         final @NonNull var cause = new Exception();
-        final @NonNull var instance = new TrueValidationFault(message, cause, false, false);
+        final @NonNull var instance = new NullValidationFault(message, cause, false, false);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
         assertEquals(message, instance.getMessage());

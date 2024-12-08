@@ -14,33 +14,33 @@
  * limitations under the License.
  */
 
-package com.sogeor.validation;
+package com.sogeor.framework.validation;
 
-import com.sogeor.annotation.Contract;
-import com.sogeor.annotation.NonNull;
-import com.sogeor.annotation.Nullable;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.annotation.Nullable;
 
 /**
- * Представляет собой непроверяемую программную неисправность, связанную с неудачной валидацией нулевого объекта,
- * который не должен быть нулевым.
+ * Представляет собой непроверяемую программную неисправность, связанную с неудачной валидацией истинности значения.
  *
+ * @see TrueValidationFault
  * @since 1.0.0-RC1
  */
-public class NullValidationFault extends ValidationFault {
+public class FalseValidationFault extends ValidationFault {
 
     /**
      * Содержит сообщение по умолчанию.
      *
      * @since 1.0.0-RC1
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "The object must not be null";
+    public static final @NonNull String DEFAULT_MESSAGE = "The value must be true";
 
     /**
      * Содержит шаблонное сообщение.
      *
      * @since 1.0.0-RC1
      */
-    public static final @NonNull String TEMPLATE_MESSAGE = "%s must not be null";
+    public static final @NonNull String TEMPLATE_MESSAGE = "%s must be true";
 
     /**
      * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением}, {@linkplain #DEFAULT_CAUSE причиной возникновения},
@@ -50,7 +50,7 @@ public class NullValidationFault extends ValidationFault {
      * @since 1.0.0-RC1
      */
     @Contract("-> new")
-    public NullValidationFault() {
+    public FalseValidationFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -64,7 +64,7 @@ public class NullValidationFault extends ValidationFault {
      * @since 1.0.0-RC1
      */
     @Contract("? -> new")
-    public NullValidationFault(final @Nullable String message) {
+    public FalseValidationFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -78,7 +78,7 @@ public class NullValidationFault extends ValidationFault {
      * @since 1.0.0-RC1
      */
     @Contract("? -> new")
-    public NullValidationFault(final @Nullable Throwable cause) {
+    public FalseValidationFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -93,7 +93,7 @@ public class NullValidationFault extends ValidationFault {
      * @since 1.0.0-RC1
      */
     @Contract("?, ? -> new")
-    public NullValidationFault(final @Nullable String message, final @Nullable Throwable cause) {
+    public FalseValidationFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -107,7 +107,7 @@ public class NullValidationFault extends ValidationFault {
      * @since 1.0.0-RC1
      */
     @Contract("?, ? -> new")
-    public NullValidationFault(final boolean suppression, final boolean stackTrace) {
+    public FalseValidationFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
@@ -122,8 +122,8 @@ public class NullValidationFault extends ValidationFault {
      * @since 1.0.0-RC1
      */
     @Contract("?, ?, ?, ? -> new")
-    public NullValidationFault(final @Nullable String message, final @Nullable Throwable cause,
-                               final boolean suppression, final boolean stackTrace) {
+    public FalseValidationFault(final @Nullable String message, final @Nullable Throwable cause,
+                                final boolean suppression, final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
     }
 

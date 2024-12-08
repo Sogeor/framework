@@ -14,54 +14,49 @@
  * limitations under the License.
  */
 
-package com.sogeor.validation;
+package com.sogeor.framework.validation;
 
-import com.sogeor.annotation.NonNull;
+import com.sogeor.framework.annotation.NonNull;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-final class NonEqualValidationFaultTest {
+final class NonNullValidationFaultTest {
 
     @Test
-    void defaultObjectsMessageField() {
-        assertNotNull(NonEqualValidationFault.DEFAULT_OBJECTS_MESSAGE);
-    }
-
-    @Test
-    void defaultValuesMessageField() {
-        assertNotNull(NonEqualValidationFault.DEFAULT_VALUES_MESSAGE);
+    void defaultMessageField() {
+        assertNotNull(NonNullValidationFault.DEFAULT_MESSAGE);
     }
 
     @Test
     void templateMessageField() {
-        assertNotNull(NonEqualValidationFault.TEMPLATE_MESSAGE);
+        assertNotNull(NonNullValidationFault.TEMPLATE_MESSAGE);
     }
 
     @Test
     void defaultCauseField() {
-        assertNull(NonEqualValidationFault.DEFAULT_CAUSE);
+        assertNull(NonNullValidationFault.DEFAULT_CAUSE);
     }
 
     @Test
     void defaultSuppressionField() {
-        assertTrue(NonEqualValidationFault.DEFAULT_SUPPRESSION);
+        assertTrue(NonNullValidationFault.DEFAULT_SUPPRESSION);
     }
 
     @Test
     void defaultStackTraceField() {
-        assertTrue(NonEqualValidationFault.DEFAULT_STACK_TRACE);
+        assertTrue(NonNullValidationFault.DEFAULT_STACK_TRACE);
     }
 
     @Test
     void defaultConstructor() {
-        final @NonNull var instance = new NonEqualValidationFault();
+        final @NonNull var instance = new NonNullValidationFault();
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
-        assertEquals(NonEqualValidationFault.DEFAULT_MESSAGE, instance.getMessage());
-        assertEquals(NonEqualValidationFault.DEFAULT_CAUSE, instance.getCause());
+        assertEquals(NonNullValidationFault.DEFAULT_MESSAGE, instance.getMessage());
+        assertEquals(NonNullValidationFault.DEFAULT_CAUSE, instance.getCause());
         assertTrue(Arrays.asList(instance.getSuppressed()).contains(exception));
         assertNotEquals(0, instance.getStackTrace().length);
     }
@@ -69,11 +64,11 @@ final class NonEqualValidationFaultTest {
     @Test
     void constructorWithMessage() {
         final @NonNull var message = "The test message";
-        final @NonNull var instance = new NonEqualValidationFault(message);
+        final @NonNull var instance = new NonNullValidationFault(message);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
         assertEquals(message, instance.getMessage());
-        assertEquals(NonEqualValidationFault.DEFAULT_CAUSE, instance.getCause());
+        assertEquals(NonNullValidationFault.DEFAULT_CAUSE, instance.getCause());
         assertTrue(Arrays.asList(instance.getSuppressed()).contains(exception));
         assertNotEquals(0, instance.getStackTrace().length);
     }
@@ -81,10 +76,10 @@ final class NonEqualValidationFaultTest {
     @Test
     void constructorWithCause() {
         final @NonNull var cause = new Exception();
-        final @NonNull var instance = new NonEqualValidationFault(cause);
+        final @NonNull var instance = new NonNullValidationFault(cause);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
-        assertEquals(NonEqualValidationFault.DEFAULT_MESSAGE, instance.getMessage());
+        assertEquals(NonNullValidationFault.DEFAULT_MESSAGE, instance.getMessage());
         assertEquals(cause, instance.getCause());
         assertTrue(Arrays.asList(instance.getSuppressed()).contains(exception));
         assertNotEquals(0, instance.getStackTrace().length);
@@ -94,7 +89,7 @@ final class NonEqualValidationFaultTest {
     void constructorWithMessageAndCause() {
         final @NonNull var message = "The test message";
         final @NonNull var cause = new Exception();
-        final @NonNull var instance = new NonEqualValidationFault(message, cause);
+        final @NonNull var instance = new NonNullValidationFault(message, cause);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
         assertEquals(message, instance.getMessage());
@@ -105,11 +100,11 @@ final class NonEqualValidationFaultTest {
 
     @Test
     void constructorWithSuppressionAndStackTrace() {
-        final @NonNull var instance = new NonEqualValidationFault(false, false);
+        final @NonNull var instance = new NonNullValidationFault(false, false);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
-        assertEquals(NonEqualValidationFault.DEFAULT_MESSAGE, instance.getMessage());
-        assertEquals(NonEqualValidationFault.DEFAULT_CAUSE, instance.getCause());
+        assertEquals(NonNullValidationFault.DEFAULT_MESSAGE, instance.getMessage());
+        assertEquals(NonNullValidationFault.DEFAULT_CAUSE, instance.getCause());
         assertEquals(0, instance.getSuppressed().length);
         assertEquals(0, instance.getStackTrace().length);
     }
@@ -118,7 +113,7 @@ final class NonEqualValidationFaultTest {
     void constructorWithMessageAndCauseAndSuppressionAndStackTrace() {
         final @NonNull var message = "The test message";
         final @NonNull var cause = new Exception();
-        final @NonNull var instance = new NonEqualValidationFault(message, cause, false, false);
+        final @NonNull var instance = new NonNullValidationFault(message, cause, false, false);
         final @NonNull var exception = new Exception();
         instance.addSuppressed(exception);
         assertEquals(message, instance.getMessage());

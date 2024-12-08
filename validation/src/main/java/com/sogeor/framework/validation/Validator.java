@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.sogeor.validation;
+package com.sogeor.framework.validation;
 
-import com.sogeor.annotation.Contract;
-import com.sogeor.annotation.NonNull;
-import com.sogeor.annotation.Null;
-import com.sogeor.annotation.Nullable;
-import com.sogeor.throwable.failure.utility.UtilityCreationFailure;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.annotation.Null;
+import com.sogeor.framework.annotation.Nullable;
+import com.sogeor.framework.throwable.failure.utility.UtilityCreationFailure;
 
 /**
  * Представляет собой валидатор объектов и значений.

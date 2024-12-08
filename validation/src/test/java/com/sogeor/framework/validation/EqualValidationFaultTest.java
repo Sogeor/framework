@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.sogeor.validation;
+package com.sogeor.framework.validation;
 
-import com.sogeor.annotation.NonNull;
+import com.sogeor.framework.annotation.NonNull;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

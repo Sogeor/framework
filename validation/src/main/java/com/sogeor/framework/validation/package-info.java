@@ -17,14 +17,14 @@
 /**
  * Предоставляет инструменты для валидации объектов и значений.
  *
- * @see com.sogeor.validation.EqualValidationFault
- * @see com.sogeor.validation.FalseValidationFault
- * @see com.sogeor.validation.NonEqualValidationFault
- * @see com.sogeor.validation.NonNullValidationFault
- * @see com.sogeor.validation.NullValidationFault
- * @see com.sogeor.validation.TrueValidationFault
- * @see com.sogeor.validation.ValidationFault
- * @see com.sogeor.validation.Validator
+ * @see com.sogeor.framework.validation.EqualValidationFault
+ * @see com.sogeor.framework.validation.FalseValidationFault
+ * @see com.sogeor.framework.validation.NonEqualValidationFault
+ * @see com.sogeor.framework.validation.NonNullValidationFault
+ * @see com.sogeor.framework.validation.NullValidationFault
+ * @see com.sogeor.framework.validation.TrueValidationFault
+ * @see com.sogeor.framework.validation.ValidationFault
+ * @see com.sogeor.framework.validation.Validator
  * @since 1.0.0-RC1
  */
-package com.sogeor.validation;
+package com.sogeor.framework.validation;

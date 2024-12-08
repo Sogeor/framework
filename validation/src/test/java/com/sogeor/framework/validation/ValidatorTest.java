@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.sogeor.validation;
+package com.sogeor.framework.validation;
 
-import com.sogeor.annotation.NonNull;
-import com.sogeor.throwable.failure.utility.UtilityCreationFailure;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.throwable.failure.utility.UtilityCreationFailure;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

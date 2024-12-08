@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.sogeor.validation;
+package com.sogeor.framework.validation;
 
-import com.sogeor.annotation.Contract;
-import com.sogeor.annotation.NonNull;
-import com.sogeor.annotation.Nullable;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.annotation.Nullable;
 
 /**
  * Представляет собой непроверяемую программную неисправность, связанную с неудачной валидацией неравенства объектов или
