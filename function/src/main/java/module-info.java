@@ -15,13 +15,12 @@
  */
 
 /**
- * Представляет собой модуль для работы с функциями.
+ * Предоставляет функциональные инструменты.
  *
- * @see com.sogeor.function
  * @since 1.0.0-RC1
  */
 module com.sogeor.function {
-    requires org.jetbrains.annotations;
+    requires com.sogeor.annotation;
     requires com.sogeor.throwable;
     requires com.sogeor.validation;
 
