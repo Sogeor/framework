@@ -18,6 +18,7 @@ package com.sogeor.validation;
 
 import com.sogeor.annotation.Contract;
 import com.sogeor.annotation.NonNull;
+import com.sogeor.annotation.Null;
 import com.sogeor.annotation.Nullable;
 import com.sogeor.throwable.failure.utility.UtilityCreationFailure;
 
@@ -54,16 +55,16 @@ public final class Validator {
      * @since 1.0.0-RC1
      */
     @Contract("null -> null; !null -> fault")
-    public static <T> @Nullable T isNull(final @Nullable T object) throws NonNullValidationFault {
+    public static <T> @Null T isNull(final @Nullable T object) throws NonNullValidationFault {
         if (object == null) return null;
         throw new NonNullValidationFault();
     }
 
     /**
      * Если переданный объект нулевой, то возвращает его, в противном случае генерирует
-     * {@linkplain NonNullValidationFault непроверяемую программную неисправность}  с
+     * {@linkplain NonNullValidationFault непроверяемую программную неисправность} с
      * {@linkplain NonNullValidationFault#TEMPLATE_MESSAGE шаблонным сообщением} на основе переданного имени переданного
-     * объекта.
+     * объекта, или если оно нулевое, то с {@linkplain NonNullValidationFault#DEFAULT_CAUSE сообщением по умолчанию}.
      *
      * @param object объект.
      * @param name имя переданного объекта.
@@ -76,8 +77,8 @@ public final class Validator {
      * @since 1.0.0-RC1
      */
     @Contract("null, ? -> null; !null, ? -> fault")
-    public static <T> @Nullable T isNull(final @Nullable T object, final @Nullable String name) throws
-                                                                                                NonNullValidationFault {
+    public static <T> @Null T isNull(final @Nullable T object, final @Nullable String name) throws
+                                                                                            NonNullValidationFault {
         if (object == null) return null;
         if (name == null) throw new NonNullValidationFault();
         throw new NonNullValidationFault(NonNullValidationFault.TEMPLATE_MESSAGE.formatted(name));
@@ -104,9 +105,9 @@ public final class Validator {
 
     /**
      * Если переданный объект ненулевой, то возвращает его, в противном случае генерирует
-     * {@linkplain NullValidationFault непроверяемую программную неисправность}  с
+     * {@linkplain NullValidationFault непроверяемую программную неисправность} с
      * {@linkplain NullValidationFault#TEMPLATE_MESSAGE шаблонным сообщением} на основе переданного имени переданного
-     * объекта.
+     * объекта, или если оно нулевое, то с {@linkplain NullValidationFault#DEFAULT_CAUSE сообщением по умолчанию}.
      *
      * @param object объект.
      * @param name имя переданного объекта.
@@ -134,7 +135,7 @@ public final class Validator {
      *
      * @return Переданное значение, если оно ложное.
      *
-     * @throws TrueValidationFault условие не должно быть истинным.
+     * @throws TrueValidationFault условие должно быть ложным.
      * @see #isFalse(boolean, String)
      * @since 1.0.0-RC1
      */
@@ -148,14 +149,14 @@ public final class Validator {
      * Если переданное значение ложное, то возвращает его, в противном случае генерирует
      * {@linkplain TrueValidationFault непроверяемую программную неисправность} с
      * {@linkplain TrueValidationFault#TEMPLATE_MESSAGE шаблонным сообщением} на основе переданного имени переданного
-     * значения.
+     * значения, или если оно нулевое, то с {@linkplain TrueValidationFault#DEFAULT_CAUSE сообщением по умолчанию}.
      *
      * @param value значение.
      * @param name имя переданного значения.
      *
      * @return Переданное значение, если оно ложное.
      *
-     * @throws TrueValidationFault условие не должно быть истинным.
+     * @throws TrueValidationFault условие должно быть ложным.
      * @see #isFalse(boolean)
      * @since 1.0.0-RC1
      */
@@ -174,7 +175,7 @@ public final class Validator {
      *
      * @return Переданное значение, если оно истинное.
      *
-     * @throws FalseValidationFault условие не должно быть ложным.
+     * @throws FalseValidationFault условие должно быть истинным.
      * @see #isTrue(boolean, String)
      * @since 1.0.0-RC1
      */
@@ -188,14 +189,14 @@ public final class Validator {
      * Если переданное значение истинное, то возвращает его, в противном случае генерирует
      * {@linkplain FalseValidationFault непроверяемую программную неисправность} с
      * {@linkplain FalseValidationFault#TEMPLATE_MESSAGE шаблонным сообщением} на основе переданного имени переданного
-     * значения.
+     * значения, или если оно нулевое, то с {@linkplain FalseValidationFault#DEFAULT_CAUSE сообщением по умолчанию}.
      *
      * @param value значение.
      * @param name имя переданного значения.
      *
      * @return Переданное значение, если оно истинное.
      *
-     * @throws FalseValidationFault условие не должно быть истинным.
+     * @throws FalseValidationFault условие должно быть истинным.
      * @see #isTrue(boolean)
      * @since 1.0.0-RC1
      */
@@ -204,6 +205,114 @@ public final class Validator {
         if (value) return true;
         if (name == null) throw new FalseValidationFault();
         throw new FalseValidationFault(FalseValidationFault.TEMPLATE_MESSAGE.formatted(name));
+    }
+
+    /**
+     * Если переданные первичный и вторичный объекты равны, то возвращает переданный первичный объект, в противном
+     * случае генерирует {@linkplain NonEqualValidationFault непроверяемую программную неисправность} с
+     * {@linkplain NonEqualValidationFault#DEFAULT_OBJECTS_MESSAGE сообщением для объектов по умолчанию}.
+     *
+     * @param primaryObject первичный объект.
+     * @param secondaryObject вторичный объект.
+     * @param <T> тип переданных первичного и вторичного объектов.
+     *
+     * @return Переданный первичный объект, если он равен переданному вторичному объекту.
+     *
+     * @throws NonEqualValidationFault переданные первичный и вторичный объекты должны быть равны.
+     * @see #equal(Object, Object, String, String)
+     * @since 1.0.0-RC1
+     */
+    @Contract("?, ? -> ?")
+    public static <T> @Nullable T equal(final @Nullable T primaryObject, final @Nullable T secondaryObject) throws
+                                                                                                            NonEqualValidationFault {
+        if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
+            return primaryObject;
+        throw new NonEqualValidationFault(NonEqualValidationFault.DEFAULT_OBJECTS_MESSAGE);
+    }
+
+    /**
+     * Если переданные первичный и вторичный объекты равны, то возвращает переданный первичный объект, в противном
+     * случае генерирует {@linkplain NonEqualValidationFault непроверяемую программную неисправность} с
+     * {@linkplain NonEqualValidationFault#TEMPLATE_MESSAGE шаблонным сообщением} на основе переданных имён переданных
+     * первичного и вторичного объектов, или если они нулевые, то с
+     * {@linkplain NonEqualValidationFault#DEFAULT_OBJECTS_MESSAGE сообщением для объектов по умолчанию}.
+     *
+     * @param primaryObject первичный объект.
+     * @param secondaryObject вторичный объект.
+     * @param primaryName имя переданного первичного объекта.
+     * @param secondaryName имя переданного вторичного объекта.
+     * @param <T> тип переданных первичного и вторичного объектов.
+     *
+     * @return Переданный первичный объект, если он равен переданному вторичному объекту.
+     *
+     * @throws NonEqualValidationFault переданные первичный и вторичный объекты должны быть равны.
+     * @see #equal(Object, Object)
+     * @since 1.0.0-RC1
+     */
+    @Contract("?, ? -> ?")
+    public static <T> @Nullable T equal(final @Nullable T primaryObject, final @Nullable T secondaryObject,
+                                        final @Nullable String primaryName, final @Nullable String secondaryName) throws
+                                                                                                                  NonEqualValidationFault {
+        if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
+            return primaryObject;
+        if (primaryName == null || secondaryName == null)
+            throw new NonEqualValidationFault(NonEqualValidationFault.DEFAULT_OBJECTS_MESSAGE);
+        throw new NonEqualValidationFault(
+                NonEqualValidationFault.TEMPLATE_MESSAGE.formatted("%s and %s".formatted(primaryName, secondaryName)));
+    }
+
+    /**
+     * Если переданные первичный и вторичный объекты неравны, то возвращает переданный первичный объект, в противном
+     * случае генерирует {@linkplain EqualValidationFault непроверяемую программную неисправность} с
+     * {@linkplain EqualValidationFault#DEFAULT_OBJECTS_MESSAGE сообщением для объектов по умолчанию}.
+     *
+     * @param primaryObject первичный объект.
+     * @param secondaryObject вторичный объект.
+     * @param <T> тип переданных первичного и вторичного объектов.
+     *
+     * @return Переданный первичный объект, если он неравен переданному вторичному объекту.
+     *
+     * @throws EqualValidationFault переданные первичный и вторичный объекты не должны быть равны.
+     * @see #nonEqual(Object, Object, String, String)
+     * @since 1.0.0-RC1
+     */
+    @Contract("?, ? -> ?")
+    public static <T> @Nullable T nonEqual(final @Nullable T primaryObject, final @Nullable T secondaryObject) throws
+                                                                                                               EqualValidationFault {
+        if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
+            return primaryObject;
+        throw new EqualValidationFault(EqualValidationFault.DEFAULT_OBJECTS_MESSAGE);
+    }
+
+    /**
+     * Если переданные первичный и вторичный объекты неравны, то возвращает переданный первичный объект, в противном
+     * случае генерирует {@linkplain EqualValidationFault непроверяемую программную неисправность} с
+     * {@linkplain EqualValidationFault#TEMPLATE_MESSAGE шаблонным сообщением} на основе переданных имён переданных
+     * первичного и вторичного объектов, или если они нулевые, то с
+     * {@linkplain EqualValidationFault#DEFAULT_OBJECTS_MESSAGE сообщением для объектов по умолчанию}.
+     *
+     * @param primaryObject первичный объект.
+     * @param secondaryObject вторичный объект.
+     * @param primaryName имя переданного первичного объекта.
+     * @param secondaryName имя переданного вторичного объекта.
+     * @param <T> тип переданных первичного и вторичного объектов.
+     *
+     * @return Переданный первичный объект, если он неравен переданному вторичному объекту.
+     *
+     * @throws EqualValidationFault переданные первичный и вторичный объекты не должны быть равны.
+     * @see #nonEqual(Object, Object)
+     * @since 1.0.0-RC1
+     */
+    @Contract("?, ? -> ?")
+    public static <T> @Nullable T nonEqual(final @Nullable T primaryObject, final @Nullable T secondaryObject,
+                                           final @Nullable String primaryName,
+                                           final @Nullable String secondaryName) throws EqualValidationFault {
+        if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
+            return primaryObject;
+        if (primaryName == null || secondaryName == null)
+            throw new EqualValidationFault(EqualValidationFault.DEFAULT_OBJECTS_MESSAGE);
+        throw new EqualValidationFault(
+                EqualValidationFault.TEMPLATE_MESSAGE.formatted("%s and %s".formatted(primaryName, secondaryName)));
     }
 
 }
