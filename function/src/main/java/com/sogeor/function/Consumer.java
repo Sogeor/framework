@@ -16,18 +16,47 @@
 
 package com.sogeor.function;
 
+import com.sogeor.annotation.Contract;
+import com.sogeor.annotation.NonNull;
+import com.sogeor.annotation.Nullable;
 import com.sogeor.validation.ValidationFault;
-import org.jetbrains.annotations.NotNull;
 
 /**
+ * Представляет собой потребитель объекта.
+ *
+ * @param <T> тип объекта.
+ * @param <F> тип программного сбоя или неисправности, возникающий при неудачном потреблении объекта.
+ *
  * @since 1.0.0-RC1
  */
 @FunctionalInterface
 public interface Consumer<T, F extends Throwable> {
 
     /**
+     * Создаёт экземпляр, который при потреблении объекта ничего не делает.
+     *
+     * @param <T> тип объекта, потребляемого новым экземпляром.
+     * @param <F> тип программного сбоя или неисправности, возникающий при неудачном потреблении объекта новым
+     * экземпляром.
+     *
+     * @return Новый экземпляр, который при потреблении объекта ничего не делает.
+     *
      * @since 1.0.0-RC1
      */
-    void consume(final @NotNull T object) throws ValidationFault, F;
+    @Contract("-> new")
+    static <T, F extends Throwable> @NonNull Consumer<T, F> empty() {
+        return ignored -> {};
+    }
+
+    /**
+     * Потребляет переданный объект.
+     *
+     * @param object объект.
+     *
+     * @throws ValidationFault неудачная валидация переданного объекта.
+     * @throws F неудачное потребление переданного объекта.
+     * @since 1.0.0-RC1
+     */
+    void consume(final @Nullable T object) throws ValidationFault, F;
 
 }
