@@ -15,8 +15,7 @@
  */
 
 /**
- * Представляет собой пакет для работы с программными сбоями, основанными на {@linkplain java.lang.Throwable} и
- * {@linkplain java.lang.Error}.
+ * Предоставляет фундаментальные программные сбои.
  *
  * @see com.sogeor.throwable
  * @see com.sogeor.throwable.failure.utility
