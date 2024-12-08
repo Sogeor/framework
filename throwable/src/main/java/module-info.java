@@ -15,13 +15,12 @@
  */
 
 /**
- * Представляет собой модуль для работы с программными сбоями и неисправностями.
+ * Предоставляет фундаментальные программные сбои и неисправности.
  *
- * @see com.sogeor.throwable
  * @since 1.0.0-RC1
  */
 module com.sogeor.throwable {
-    requires org.jetbrains.annotations;
+    requires com.sogeor.annotation;
 
     exports com.sogeor.throwable.failure;
     exports com.sogeor.throwable.failure.utility;
