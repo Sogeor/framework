@@ -19,10 +19,10 @@
  *
  * @since 1.0.0-RC1
  */
-module com.sogeor.function {
-    requires com.sogeor.annotation;
-    requires com.sogeor.throwable;
-    requires com.sogeor.validation;
+module com.sogeor.framework.function {
+    requires com.sogeor.framework.annotation;
+    requires com.sogeor.framework.throwable;
+    requires com.sogeor.framework.validation;
 
-    exports com.sogeor.function;
+    exports com.sogeor.framework.function;
 }

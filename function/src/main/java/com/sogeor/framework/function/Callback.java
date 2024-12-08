@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.sogeor.function;
+package com.sogeor.framework.function;
 
-import com.sogeor.validation.ValidationFault;
-import com.sogeor.validation.argument.ArgumentValidator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.annotation.Nullable;
+import com.sogeor.framework.validation.ValidationFault;
+import com.sogeor.framework.validation.Validator;
 
 /**
- * Представляет собой функцию обратного вызова.
+ * Представляет собой обратный вызов.
  *
- * @param <F> тип программного сбоя или неисправности, возникающей во время выполнения этой функции.
+ * @param <F> тип программного сбоя или неисправности, возникающей во время выполнения обратного вызова.
  *
  * @since 1.0.0-RC1
  */
@@ -33,27 +33,69 @@ import org.jetbrains.annotations.Nullable;
 public interface Callback<F extends Throwable> {
 
     /**
-     * Создаёт новую функцию обратного вызова, во время выполнения которой ничего не происходит.
+     * Создаёт экземпляр, во время выполнения которого ничего не происходит.
      *
-     * @param <F> тип программного сбоя или неисправности, возникающей во время выполнения новой функции обратного
-     * вызова.
+     * @param <F> тип программного сбоя или неисправности, возникающей во время выполнения нового экземпляра.
      *
-     * @return Новая функция обратного вызова, во время выполнения которой ничего не происходит.
+     * @return Новый экземпляр, во время выполнения которого ничего не происходит.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(value = "-> new", pure = true)
-    static <F extends Throwable> @NotNull Callback<F> empty() {
+    @Contract("-> new")
+    static <F extends Throwable> @NonNull Callback<F> empty() {
         return () -> {};
+    }
+
+    /**
+     * Создаёт экземпляр, во время выполнения которого бросается переданный в этот метод программный сбой или
+     * неисправность.
+     *
+     * @param throwable программный сбой или неисправность.
+     * @param <F> тип переданного программного сбоя или неисправности.
+     *
+     * @return Новый экземпляр, во время выполнения которого бросается переданный в этот метод программный сбой или
+     * неисправность.
+     *
+     * @since 1.0.0-RC1
+     */
+    @Contract("!null -> new; null -> fail")
+    static <F extends Throwable> @NonNull Callback<F> withThrowable(final @NonNull F throwable) throws ValidationFault {
+        Validator.nonNull(throwable, "The passed throwable");
+        return () -> {
+            throw throwable;
+        };
+    }
+
+    /**
+     * Создаёт экземпляр, во время выполнения которого бросается переданный в этот метод программный сбой или
+     * неисправность.
+     *
+     * @param supplier поставщик программный сбой или неисправность.
+     * @param <F1> тип переданного программного сбоя или неисправности.
+     *
+     * @return Новый экземпляр, во время выполнения которого бросается переданный в этот метод программный сбой или
+     * неисправность.
+     *
+     * @since 1.0.0-RC1
+     */
+    @Contract("!null -> new; null -> fail")
+    static <F1 extends Throwable, F2 extends F1> @NonNull Callback<F1> withThrowable(
+            final @NonNull Supplier<F1, F2> supplier) throws ValidationFault {
+        Validator.nonNull(supplier, "The passed supplier");
+        return () -> {
+            throw supplier.supply();
+        };
     }
 
     /**
      * Выполняет обратный вызов.
      *
-     * @throws F программный сбой или неисправность, возникающая во время выполнения обратного вызова.
+     * @throws ValidationFault выполнение обратного вызова завершилось неудачно.
+     * @throws F выполнение обратного вызова завершилось неудачно.
      * @since 1.0.0-RC1
      */
-    void call() throws F;
+    @Contract("-> ?")
+    void call() throws ValidationFault, F;
 
     /**
      * Соединяет эту и переданную функцию так, что во время выполнения обратного вызова сначала выполняется эта функция,
@@ -78,9 +120,9 @@ public interface Callback<F extends Throwable> {
      * </ol>
      * @since 1.0.0-RC1
      */
-    @Contract(value = "_ -> new", pure = true)
-    default <PF extends F> @NotNull Callback<F> and(final @NotNull Callback<PF> callback) throws ValidationFault {
-        ArgumentValidator.notNull(callback, "The passed callback");
+    @Contract("!null -> new; null -> fault")
+    default <PF extends F> @NonNull Callback<F> and(final @NonNull Callback<PF> callback) throws ValidationFault {
+        Validator.nonNull(callback, "The passed callback");
         return () -> {
             call();
             callback.call();
@@ -116,16 +158,16 @@ public interface Callback<F extends Throwable> {
      * </ol>
      * @since 1.0.0-RC1
      */
-    @Contract(value = "_ -> new", pure = true)
-    default <PF extends F> @NotNull Callback<F> or(final @NotNull Callback<PF> callback) throws ValidationFault {
-        ArgumentValidator.notNull(callback, "The passed callback");
+    @Contract("!null -> new; null -> fault")
+    default <PF extends F> @NonNull Callback<F> or(final @NonNull Callback<PF> callback) throws ValidationFault {
+        Validator.nonNull(callback, "The passed callback");
         return () -> {
             try {
                 call();
-            } catch (final @NotNull Throwable first) {
+            } catch (final @NonNull Throwable first) {
                 try {
                     callback.call();
-                } catch (final @NotNull Throwable second) {
+                } catch (final @NonNull Throwable second) {
                     second.addSuppressed(first);
                     throw second;
                 }
@@ -168,20 +210,21 @@ public interface Callback<F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @SuppressWarnings("unchecked")
-    @Contract(value = "_ -> new", pure = true)
-    default <PF extends F> @NotNull Callback<F> securedAnd(final @NotNull Callback<PF> callback) throws
+    @Contract("!null -> new; null -> fault")
+    default <PF extends F> @NonNull Callback<F> securedAnd(final @NonNull Callback<PF> callback) throws
                                                                                                  ValidationFault {
-        ArgumentValidator.notNull(callback, "The passed callback");
+        Validator.nonNull(callback, "The passed callback");
         return () -> {
-            @Nullable Throwable first = null;
+            @Nullable
+            Throwable first = null;
             try {
                 call();
-            } catch (final @NotNull Throwable failure) {
+            } catch (final @NonNull Throwable failure) {
                 first = failure;
             }
             try {
                 callback.call();
-            } catch (final @NotNull Throwable second) {
+            } catch (final @NonNull Throwable second) {
                 if (first != null) second.addSuppressed(first);
                 throw second;
             }

@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.sogeor.function;
+package com.sogeor.framework.function;
 
-import com.sogeor.annotation.Contract;
-import com.sogeor.annotation.NonNull;
-import com.sogeor.annotation.Nullable;
-import com.sogeor.validation.ValidationFault;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.annotation.Nullable;
+import com.sogeor.framework.throwable.fault.ImaginaryFault;
+import com.sogeor.framework.validation.ValidationFault;
 
 /**
  * Представляет собой потребитель объекта.
@@ -36,15 +37,13 @@ public interface Consumer<T, F extends Throwable> {
      * Создаёт экземпляр, который при потреблении объекта ничего не делает.
      *
      * @param <T> тип объекта, потребляемого новым экземпляром.
-     * @param <F> тип программного сбоя или неисправности, возникающий при неудачном потреблении объекта новым
-     * экземпляром.
      *
      * @return Новый экземпляр, который при потреблении объекта ничего не делает.
      *
      * @since 1.0.0-RC1
      */
     @Contract("-> new")
-    static <T, F extends Throwable> @NonNull Consumer<T, F> empty() {
+    static <T> @NonNull Consumer<T, ImaginaryFault> empty() {
         return ignored -> {};
     }
 
@@ -57,6 +56,7 @@ public interface Consumer<T, F extends Throwable> {
      * @throws F неудачное потребление переданного объекта.
      * @since 1.0.0-RC1
      */
+    @Contract("? -> ?")
     void consume(final @Nullable T object) throws ValidationFault, F;
 
 }
