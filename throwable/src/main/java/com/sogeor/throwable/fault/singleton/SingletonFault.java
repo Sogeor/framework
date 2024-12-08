@@ -16,81 +16,89 @@
 
 package com.sogeor.throwable.fault.singleton;
 
+import com.sogeor.annotation.Contract;
+import com.sogeor.annotation.Nullable;
 import com.sogeor.throwable.fault.UncheckedFault;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
 
 /**
- * Представляет собой непроверяемую программную неисправность, возникающую при работе с классом, который спроектирован
- * согласно порождающему шаблону проектирования — одиночке.
+ * Представляет собой непроверяемую программную неисправность, связанную с классами, спроектированными согласно
+ * порождающему шаблону проектирования — одиночке.
  *
  * @since 1.0.0-RC1
  */
 public class SingletonFault extends UncheckedFault {
 
     /**
-     * Представляет собой конструктор по умолчанию.
+     * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением}, {@linkplain #DEFAULT_CAUSE причиной возникновения},
+     * параметрами {@linkplain #DEFAULT_SUPPRESSION подавления} и {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по
+     * умолчанию.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("-> new")
     public SingletonFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать сообщение.
+     * Создаёт экземпляр с {@linkplain #DEFAULT_CAUSE причиной возникновения}, параметрами
+     * {@linkplain #DEFAULT_SUPPRESSION подавления} и {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию,
+     * а также с переданным сообщением.
      *
      * @param message сообщение.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("? -> new")
     public SingletonFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать причину возникновения.
+     * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением}, параметрами
+     * {@linkplain #DEFAULT_SUPPRESSION подавления} и {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию,
+     * а также с переданной причиной возникновения.
      *
      * @param cause причина возникновения.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("? -> new")
     public SingletonFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать сообщение и причину возникновения.
+     * Создаёт экземпляр с параметрами {@linkplain #DEFAULT_SUPPRESSION подавления} и
+     * {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию, а также с переданным сообщением и причиной
+     * возникновения.
      *
      * @param message сообщение.
      * @param cause причина возникновения.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?, ? -> new")
     public SingletonFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать параметры подавления и трассировки стека.
+     * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением} и {@linkplain #DEFAULT_CAUSE причиной возникновения}
+     * по умолчанию, а также с переданными параметрами подавления и трассировки стека.
      *
      * @param suppression параметр подавления.
      * @param stackTrace параметр трассировки стека.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?, ? -> new")
     public SingletonFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать сообщение, причину возникновения, параметры подавления и
-     * трассировки стека.
+     * Создаёт экземпляр с переданным сообщением, причиной возникновения, параметрами подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина возникновения.
@@ -99,7 +107,7 @@ public class SingletonFault extends UncheckedFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?, ?, ?, ? -> new")
     public SingletonFault(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
                           final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
