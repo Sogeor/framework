@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.inherited;
+package com.sogeor.framework.collection.mutable;
 
-import java.util.Collection;
+import com.sogeor.framework.collection.readable.ReadableIterator;
+import com.sogeor.framework.collection.writable.WritableIterator;
 
 /**
  * @since 1.0.0-RC1
  */
-public interface InheritedCollection<T> extends InheritedIterable<T>, Collection<T> {}
+public interface MutableIterator<T> extends ReadableIterator<T>, WritableIterator<T> {}

@@ -14,11 +14,23 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.writable;
+package com.sogeor.framework.collection.immutable;
 
-import com.sogeor.collection.Iterator;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.collection.readable.ReadableCollection;
 
 /**
  * @since 1.0.0-RC1
  */
-public interface WritableIterator<T> extends Iterator<T> {}
+public interface ImmutableCollection<T> extends ReadableCollection<T> {
+
+    /**
+     * @since 1.0.0-RC1
+     */
+    @Override
+    @Contract(value = "-> !null")
+    @NonNull
+    ImmutableIterator<T> iterator();
+
+}

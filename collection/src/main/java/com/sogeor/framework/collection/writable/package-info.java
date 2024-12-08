@@ -14,21 +14,13 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection;
-
-import com.sogeor.collection.inherited.InheritedIterator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 /**
+ * Представляет собой пакет для работы с коллекциями только для записи.
+ *
+ * @see com.sogeor.framework.collection
+ * @see com.sogeor.framework.collection.writable.WritableCollection
+ * @see com.sogeor.framework.collection.writable.WritableCollectionFault
+ * @see com.sogeor.framework.collection.writable.WritableIterator
  * @since 1.0.0-RC1
  */
-public interface Iterator<T> {
-
-    /**
-     * @since 1.0.0-RC1
-     */
-    @Contract(value = "-> !null", pure = true)
-    @NotNull InheritedIterator<T> inherited();
-
-}
+package com.sogeor.framework.collection.writable;

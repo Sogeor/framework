@@ -14,21 +14,22 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.readable;
+package com.sogeor.framework.collection;
 
-import com.sogeor.collection.Collection;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.collection.inherited.InheritedIterable;
 
 /**
  * @since 1.0.0-RC1
  */
-public interface ReadableCollection<T> extends Collection<T> {
+public interface Collection<T> {
 
     /**
      * @since 1.0.0-RC1
      */
-    @Contract(value = "-> !null", pure = true)
-    @NotNull ReadableIterator<T> iterator();
+    @Contract(value = "-> !null")
+    @NonNull
+    InheritedIterable<T> inherited();
 
 }

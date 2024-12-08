@@ -14,13 +14,22 @@
  * limitations under the License.
  */
 
+package com.sogeor.framework.collection.writable;
+
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.collection.Collection;
+
 /**
- * Представляет собой пакет для работы с изменяемыми коллекциями.
- *
- * @see com.sogeor.collection
- * @see com.sogeor.collection.mutable.MutableCollection
- * @see com.sogeor.collection.mutable.MutableCollectionFault
- * @see com.sogeor.collection.mutable.MutableIterator
  * @since 1.0.0-RC1
  */
-package com.sogeor.collection.mutable;
+public interface WritableCollection<T> extends Collection<T> {
+
+    /**
+     * @since 1.0.0-RC1
+     */
+    @Contract(value = "-> !null")
+    @NonNull
+    WritableIterator<T> iterator();
+
+}

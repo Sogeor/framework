@@ -15,22 +15,21 @@
  */
 
 /**
- * Представляет собой модуль для работы с неизменяемыми, унаследованными и изменяемыми коллекциями, а также с
- * коллекциями только для чтения и только для записи.
+ * Предоставляет фундаментальные коллекции.
  *
- * @see com.sogeor.collection
  * @since 1.0.0-RC1
  */
-module com.sogeor.collection {
-    requires com.sogeor.function;
-    requires com.sogeor.throwable;
-    requires com.sogeor.validation;
-    requires org.jetbrains.annotations;
+module com.sogeor.framework.collection {
+    requires com.sogeor.framework.annotation;
+    requires com.sogeor.framework.common;
+    requires com.sogeor.framework.function;
+    requires com.sogeor.framework.throwable;
+    requires com.sogeor.framework.validation;
 
-    exports com.sogeor.collection.immutable;
-    exports com.sogeor.collection.inherited;
-    exports com.sogeor.collection.mutable;
-    exports com.sogeor.collection.readable;
-    exports com.sogeor.collection.writable;
-    exports com.sogeor.collection;
+    exports com.sogeor.framework.collection;
+    exports com.sogeor.framework.collection.immutable;
+    exports com.sogeor.framework.collection.inherited;
+    exports com.sogeor.framework.collection.mutable;
+    exports com.sogeor.framework.collection.readable;
+    exports com.sogeor.framework.collection.writable;
 }

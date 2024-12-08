@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.immutable;
-
-import com.sogeor.collection.readable.ReadableIterator;
-
 /**
+ * Представляет собой пакет для работы с неизменяемыми коллекциями.
+ *
+ * @see com.sogeor.framework.collection
+ * @see com.sogeor.framework.collection.immutable.ImmutableCollection
+ * @see com.sogeor.framework.collection.immutable.ImmutableCollectionFault
+ * @see com.sogeor.framework.collection.immutable.ImmutableIterator
  * @since 1.0.0-RC1
  */
-public interface ImmutableIterator<T> extends ReadableIterator<T> {}
+package com.sogeor.framework.collection.immutable;

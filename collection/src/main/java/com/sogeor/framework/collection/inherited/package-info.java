@@ -14,18 +14,15 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.readable;
-
-import com.sogeor.collection.Iterator;
-
 /**
+ * Представляет собой пакет для работы с унаследованными коллекциями.
+ *
+ * @see com.sogeor.framework.collection
+ * @see com.sogeor.framework.collection.inherited.InheritedCollection
+ * @see com.sogeor.framework.collection.inherited.InheritedCollectionFault
+ * @see com.sogeor.framework.collection.inherited.InheritedIterable
+ * @see com.sogeor.framework.collection.inherited.InheritedIterator
+ * @see com.sogeor.framework.collection.inherited.InheritedSequencedCollection
  * @since 1.0.0-RC1
  */
-public interface ReadableIterator<T> extends Iterator<T> {
-
-    /**
-     * @since 1.0.0-RC1
-     */
-    T element();
-
-}
+package com.sogeor.framework.collection.inherited;

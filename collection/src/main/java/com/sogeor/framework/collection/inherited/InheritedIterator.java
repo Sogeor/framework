@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.inherited;
+package com.sogeor.framework.collection.inherited;
 
-import java.util.SequencedCollection;
+import java.util.Iterator;
 
 /**
  * @since 1.0.0-RC1
  */
-public interface InheritedSequencedCollection<T> extends InheritedCollection<T>, SequencedCollection<T> {}
+public interface InheritedIterator<T> extends Iterator<T> {}

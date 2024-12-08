@@ -14,11 +14,24 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.inherited;
+package com.sogeor.framework.collection.mutable;
 
-import java.util.Iterator;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.collection.readable.ReadableCollection;
+import com.sogeor.framework.collection.writable.WritableCollection;
 
 /**
  * @since 1.0.0-RC1
  */
-public interface InheritedIterator<T> extends Iterator<T> {}
+public interface MutableCollection<T> extends ReadableCollection<T>, WritableCollection<T> {
+
+    /**
+     * @since 1.0.0-RC1
+     */
+    @Override
+    @Contract(value = "-> !null")
+    @NonNull
+    MutableIterator<T> iterator();
+
+}

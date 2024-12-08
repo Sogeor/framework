@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.readable;
+package com.sogeor.framework.collection.writable;
 
-import com.sogeor.collection.CollectionFault;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.Nullable;
+import com.sogeor.framework.collection.CollectionFault;
 
 /**
- * Представляет собой непроверяемую неисправность программы, возникающую при работе с коллекциями только для чтения.
+ * Представляет собой непроверяемую неисправность программы, возникающую при работе с коллекциями только для записи.
  *
  * @since 1.0.0-RC1
  */
-public class ReadableCollectionFault extends CollectionFault {
+public class WritableCollectionFault extends CollectionFault {
 
     /**
      * Представляет собой конструктор по умолчанию.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public ReadableCollectionFault() {
+    @Contract("?")
+    public WritableCollectionFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -44,8 +44,8 @@ public class ReadableCollectionFault extends CollectionFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public ReadableCollectionFault(final @Nullable String message) {
+    @Contract("?")
+    public WritableCollectionFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -56,8 +56,8 @@ public class ReadableCollectionFault extends CollectionFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public ReadableCollectionFault(final @Nullable Throwable cause) {
+    @Contract("?")
+    public WritableCollectionFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -69,8 +69,8 @@ public class ReadableCollectionFault extends CollectionFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public ReadableCollectionFault(final @Nullable String message, final @Nullable Throwable cause) {
+    @Contract("?")
+    public WritableCollectionFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
@@ -82,8 +82,8 @@ public class ReadableCollectionFault extends CollectionFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public ReadableCollectionFault(final boolean suppression, final boolean stackTrace) {
+    @Contract("?")
+    public WritableCollectionFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
@@ -98,8 +98,8 @@ public class ReadableCollectionFault extends CollectionFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
-    public ReadableCollectionFault(final @Nullable String message, final @Nullable Throwable cause,
+    @Contract("?")
+    public WritableCollectionFault(final @Nullable String message, final @Nullable Throwable cause,
                                    final boolean suppression, final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
     }

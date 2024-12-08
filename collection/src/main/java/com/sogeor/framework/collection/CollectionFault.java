@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection;
+package com.sogeor.framework.collection;
 
-import com.sogeor.throwable.fault.UncheckedFault;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.Nullable;
+import com.sogeor.framework.throwable.fault.UncheckedFault;
 
 /**
  * Представляет собой непроверяемую неисправность программы, возникающую при работе с коллекцией.
@@ -32,7 +32,7 @@ public class CollectionFault extends UncheckedFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public CollectionFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
@@ -44,7 +44,7 @@ public class CollectionFault extends UncheckedFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public CollectionFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
@@ -56,7 +56,7 @@ public class CollectionFault extends UncheckedFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public CollectionFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
@@ -69,7 +69,7 @@ public class CollectionFault extends UncheckedFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public CollectionFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
@@ -82,7 +82,7 @@ public class CollectionFault extends UncheckedFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public CollectionFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
@@ -98,7 +98,7 @@ public class CollectionFault extends UncheckedFault {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?")
     public CollectionFault(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
                            final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);

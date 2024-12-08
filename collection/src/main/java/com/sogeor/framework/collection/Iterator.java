@@ -14,13 +14,22 @@
  * limitations under the License.
  */
 
+package com.sogeor.framework.collection;
+
+import com.sogeor.framework.annotation.Contract;
+import com.sogeor.framework.annotation.NonNull;
+import com.sogeor.framework.collection.inherited.InheritedIterator;
+
 /**
- * Представляет собой пакет для работы с неизменяемыми коллекциями.
- *
- * @see com.sogeor.collection
- * @see com.sogeor.collection.immutable.ImmutableCollection
- * @see com.sogeor.collection.immutable.ImmutableCollectionFault
- * @see com.sogeor.collection.immutable.ImmutableIterator
  * @since 1.0.0-RC1
  */
-package com.sogeor.collection.immutable;
+public interface Iterator<T> {
+
+    /**
+     * @since 1.0.0-RC1
+     */
+    @Contract(value = "-> !null")
+    @NonNull
+    InheritedIterator<T> inherited();
+
+}

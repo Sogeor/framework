@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.mutable;
-
-import com.sogeor.collection.readable.ReadableIterator;
-import com.sogeor.collection.writable.WritableIterator;
-
 /**
+ * Представляет собой пакет для работы с коллекциями только для чтения.
+ *
+ * @see com.sogeor.framework.collection
+ * @see com.sogeor.framework.collection.readable.ReadableCollection
+ * @see com.sogeor.framework.collection.readable.ReadableCollectionFault
+ * @see com.sogeor.framework.collection.readable.ReadableIterator
  * @since 1.0.0-RC1
  */
-public interface MutableIterator<T> extends ReadableIterator<T>, WritableIterator<T> {}
+package com.sogeor.framework.collection.readable;

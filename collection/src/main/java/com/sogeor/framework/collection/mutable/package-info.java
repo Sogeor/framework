@@ -14,22 +14,13 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.immutable;
-
-import com.sogeor.collection.readable.ReadableCollection;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 /**
+ * Представляет собой пакет для работы с изменяемыми коллекциями.
+ *
+ * @see com.sogeor.framework.collection
+ * @see com.sogeor.framework.collection.mutable.MutableCollection
+ * @see com.sogeor.framework.collection.mutable.MutableCollectionFault
+ * @see com.sogeor.framework.collection.mutable.MutableIterator
  * @since 1.0.0-RC1
  */
-public interface ImmutableCollection<T> extends ReadableCollection<T> {
-
-    /**
-     * @since 1.0.0-RC1
-     */
-    @Override
-    @Contract(value = "-> !null", pure = true)
-    @NotNull ImmutableIterator<T> iterator();
-
-}
+package com.sogeor.framework.collection.mutable;

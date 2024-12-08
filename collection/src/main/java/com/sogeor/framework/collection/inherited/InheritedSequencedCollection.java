@@ -14,21 +14,11 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection;
+package com.sogeor.framework.collection.inherited;
 
-import com.sogeor.collection.inherited.InheritedIterable;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import java.util.SequencedCollection;
 
 /**
  * @since 1.0.0-RC1
  */
-public interface Collection<T> {
-
-    /**
-     * @since 1.0.0-RC1
-     */
-    @Contract(value = "-> !null", pure = true)
-    @NotNull InheritedIterable<T> inherited();
-
-}
+public interface InheritedSequencedCollection<T> extends InheritedCollection<T>, SequencedCollection<T> {}

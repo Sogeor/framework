@@ -14,23 +14,18 @@
  * limitations under the License.
  */
 
-package com.sogeor.collection.mutable;
+package com.sogeor.framework.collection.readable;
 
-import com.sogeor.collection.readable.ReadableCollection;
-import com.sogeor.collection.writable.WritableCollection;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import com.sogeor.framework.collection.Iterator;
 
 /**
  * @since 1.0.0-RC1
  */
-public interface MutableCollection<T> extends ReadableCollection<T>, WritableCollection<T> {
+public interface ReadableIterator<T> extends Iterator<T> {
 
     /**
      * @since 1.0.0-RC1
      */
-    @Override
-    @Contract(value = "-> !null", pure = true)
-    @NotNull MutableIterator<T> iterator();
+    T element();
 
 }
