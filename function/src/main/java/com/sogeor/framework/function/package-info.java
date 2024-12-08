@@ -15,11 +15,12 @@
  */
 
 /**
- * Представляет собой пакет для работы с функциями.
+ * Предоставляет функциональные инструменты.
  *
- * @see com.sogeor.function
- * @see com.sogeor.function.Callback
- * @see com.sogeor.function.Supplier
+ * @see com.sogeor.framework.function.Callback
+ * @see com.sogeor.framework.function.Consumer
+ * @see com.sogeor.framework.function.Handler
+ * @see com.sogeor.framework.function.Supplier
  * @since 1.0.0-RC1
  */
-package com.sogeor.function;
+package com.sogeor.framework.function;
