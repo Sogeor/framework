@@ -15,9 +15,9 @@
  */
 
 /**
- * Представляет собой пакет для работы с общими инструментами.
+ * Предоставляет фундаментальные инструменты.
  *
- * @see com.sogeor.common.CommonFault
+ * @see com.sogeor.framework.common.CommonFault
  * @since 1.0.0-RC1
  */
-package com.sogeor.common;
+package com.sogeor.framework.common;
