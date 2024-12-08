@@ -15,20 +15,13 @@
  */
 
 /**
- * Представляет собой модуль для валидации аргументов методов и конструкторов, истинности и ложности условий, значений
- * полей, анонимных значений, а также значений переменных.
+ * Предоставляет инструменты для валидации объектов и значений.
  *
- * @see com.sogeor.validation
  * @since 1.0.0-RC1
  */
 module com.sogeor.validation {
+    requires com.sogeor.annotation;
     requires com.sogeor.throwable;
-    requires org.jetbrains.annotations;
 
     exports com.sogeor.validation;
-    exports com.sogeor.validation.argument;
-    exports com.sogeor.validation.condition;
-    exports com.sogeor.validation.field;
-    exports com.sogeor.validation.value;
-    exports com.sogeor.validation.variable;
 }
