@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sogeor.annotation;
+package com.sogeor.framework.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 /**
  * Обозначает элемент, который может быть изменён или удалён с высокой вероятностью.
  *
+ * @see Obsolete
  * @since 1.0.0-RC1
  */
 @Documented

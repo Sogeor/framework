@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sogeor.annotation;
+package com.sogeor.framework.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -23,8 +23,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Обозначает элемент, который обязан быть нулевым.
+ * Обозначает элемент, который обязан быть ненулевым.
  *
+ * @see Null
+ * @see Nullable
  * @since 1.0.0-RC1
  */
 @Documented
@@ -33,4 +35,4 @@ import java.lang.annotation.Target;
         ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE, ElementType.TYPE_USE,
         ElementType.RECORD_COMPONENT
 })
-public @interface Null {}
+public @interface NonNull {}

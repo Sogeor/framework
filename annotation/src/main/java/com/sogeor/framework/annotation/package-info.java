@@ -14,23 +14,15 @@
  * limitations under the License.
  */
 
-package com.sogeor.annotation;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 /**
- * Обозначает элемент, который обязан быть ненулевым.
+ * Предоставляет фундаментальные аннотации.
  *
+ * @see com.sogeor.framework.annotation.Contract
+ * @see com.sogeor.framework.annotation.Experimental
+ * @see com.sogeor.framework.annotation.NonNull
+ * @see com.sogeor.framework.annotation.Null
+ * @see com.sogeor.framework.annotation.Nullable
+ * @see com.sogeor.framework.annotation.Obsolete
  * @since 1.0.0-RC1
  */
-@Documented
-@Retention(RetentionPolicy.CLASS)
-@Target({
-        ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE, ElementType.TYPE_USE,
-        ElementType.RECORD_COMPONENT
-})
-public @interface NonNull {}
+package com.sogeor.framework.annotation;

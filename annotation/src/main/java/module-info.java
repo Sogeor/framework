@@ -19,6 +19,6 @@
  *
  * @since 1.0.0-RC1
  */
-module com.sogeor.annotation {
-    exports com.sogeor.annotation;
+module com.sogeor.framework.annotation {
+    exports com.sogeor.framework.annotation;
 }
