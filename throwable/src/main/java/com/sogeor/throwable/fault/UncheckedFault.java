@@ -16,110 +16,117 @@
 
 package com.sogeor.throwable.fault;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
+import com.sogeor.annotation.Contract;
+import com.sogeor.annotation.Null;
+import com.sogeor.annotation.Nullable;
 
 /**
- * Представляет собой непроверяемую программную неисправность, то есть неисправность, которая может быть перехвачена и
- * обработана или передана дальше.
+ * Представляет собой непроверяемую программную неисправность.
  *
- * @apiNote При её обработке следует продолжать работу программы.
  * @see CheckedFault
  * @since 1.0.0-RC1
  */
 public class UncheckedFault extends RuntimeException {
 
     /**
-     * Представляет собой сообщение по умолчанию.
+     * Содержит сообщение по умолчанию.
      *
      * @since 1.0.0-RC1
      */
-    public static final @Nullable String DEFAULT_MESSAGE = null;
+    public static final @Null String DEFAULT_MESSAGE = null;
 
     /**
-     * Представляет собой причину возникновения по умолчанию.
+     * Содержит причину возникновения по умолчанию.
      *
      * @since 1.0.0-RC1
      */
-    public static final @Nullable Throwable DEFAULT_CAUSE = null;
+    public static final @Null Throwable DEFAULT_CAUSE = null;
 
     /**
-     * Представляет собой параметр подавления по умолчанию.
+     * Содержит параметр подавления по умолчанию.
      *
      * @since 1.0.0-RC1
      */
     public static final boolean DEFAULT_SUPPRESSION = true;
 
     /**
-     * Представляет собой параметр трассировки стека по умолчанию.
+     * Содержит параметр трассировки стека по умолчанию.
      *
      * @since 1.0.0-RC1
      */
     public static final boolean DEFAULT_STACK_TRACE = true;
 
     /**
-     * Представляет собой конструктор по умолчанию.
+     * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением}, {@linkplain #DEFAULT_CAUSE причиной возникновения},
+     * параметрами {@linkplain #DEFAULT_SUPPRESSION подавления} и {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по
+     * умолчанию.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("-> new")
     public UncheckedFault() {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать сообщение.
+     * Создаёт экземпляр с {@linkplain #DEFAULT_CAUSE причиной возникновения}, параметрами
+     * {@linkplain #DEFAULT_SUPPRESSION подавления} и {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию,
+     * а также с переданным сообщением.
      *
      * @param message сообщение.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("? -> new")
     public UncheckedFault(final @Nullable String message) {
         super(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать причину возникновения.
+     * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением}, параметрами
+     * {@linkplain #DEFAULT_SUPPRESSION подавления} и {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию,
+     * а также с переданной причиной возникновения.
      *
      * @param cause причина возникновения.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("? -> new")
     public UncheckedFault(final @Nullable Throwable cause) {
         super(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать сообщение и причину возникновения.
+     * Создаёт экземпляр с параметрами {@linkplain #DEFAULT_SUPPRESSION подавления} и
+     * {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию, а также с переданным сообщением и причиной
+     * возникновения.
      *
      * @param message сообщение.
      * @param cause причина возникновения.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?, ? -> new")
     public UncheckedFault(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, DEFAULT_SUPPRESSION, DEFAULT_STACK_TRACE);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать параметры подавления и трассировки стека.
+     * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением} и {@linkplain #DEFAULT_CAUSE причиной возникновения}
+     * по умолчанию, а также с переданными параметрами подавления и трассировки стека.
      *
      * @param suppression параметр подавления.
      * @param stackTrace параметр трассировки стека.
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?, ? -> new")
     public UncheckedFault(final boolean suppression, final boolean stackTrace) {
         super(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, stackTrace);
     }
 
     /**
-     * Представляет собой конструктор, позволяющий задать сообщение, причину возникновения, параметры подавления и
-     * трассировки стека.
+     * Создаёт экземпляр с переданным сообщением, причиной возникновения, параметрами подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина возникновения.
@@ -128,7 +135,7 @@ public class UncheckedFault extends RuntimeException {
      *
      * @since 1.0.0-RC1
      */
-    @Contract(pure = true)
+    @Contract("?, ?, ?, ? -> new")
     public UncheckedFault(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
                           final boolean stackTrace) {
         super(message, cause, suppression, stackTrace);
