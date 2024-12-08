@@ -15,10 +15,14 @@
  */
 
 /**
- * Представляет собой пакет для валидации значений полей.
+ * Предоставляет фундаментальные аннотации.
  *
- * @see com.sogeor.validation
- * @see com.sogeor.validation.field.FieldValidationFault
+ * @see com.sogeor.annotation.Contract
+ * @see com.sogeor.annotation.Experimental
+ * @see com.sogeor.annotation.NonNull
+ * @see com.sogeor.annotation.Null
+ * @see com.sogeor.annotation.Nullable
+ * @see com.sogeor.annotation.Obsolete
  * @since 1.0.0-RC1
  */
-package com.sogeor.validation.field;
+package com.sogeor.annotation;
