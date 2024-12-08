@@ -94,11 +94,11 @@ public final class Validator {
      * @return Переданный объект, если он ненулевой.
      *
      * @throws NullValidationFault объект не должен быть нулевым.
-     * @see #notNull(Object, String)
+     * @see #nonNull(Object, String)
      * @since 1.0.0-RC1
      */
     @Contract("!null -> 1; null -> fault")
-    public static <T> @NonNull T notNull(final @Nullable T object) throws NullValidationFault {
+    public static <T> @NonNull T nonNull(final @Nullable T object) throws NullValidationFault {
         if (object != null) return object;
         throw new NullValidationFault();
     }
@@ -116,11 +116,11 @@ public final class Validator {
      * @return Переданный объект, если он ненулевой.
      *
      * @throws NullValidationFault объект не должен быть нулевым.
-     * @see #notNull(Object)
+     * @see #nonNull(Object)
      * @since 1.0.0-RC1
      */
     @Contract("!null, ? -> 1; null, ? -> fault")
-    public static <T> @NonNull T notNull(final @Nullable T object, final @Nullable String name) throws
+    public static <T> @NonNull T nonNull(final @Nullable T object, final @Nullable String name) throws
                                                                                                 NullValidationFault {
         if (object != null) return object;
         if (name == null) throw new NullValidationFault();
@@ -222,7 +222,7 @@ public final class Validator {
      * @see #equal(Object, Object, String, String)
      * @since 1.0.0-RC1
      */
-    @Contract("?, ? -> ?")
+    @Contract("null, null -> null; !null, !null -> ?")
     public static <T> @Nullable T equal(final @Nullable T primaryObject, final @Nullable T secondaryObject) throws
                                                                                                             NonEqualValidationFault {
         if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
@@ -249,7 +249,7 @@ public final class Validator {
      * @see #equal(Object, Object)
      * @since 1.0.0-RC1
      */
-    @Contract("?, ? -> ?")
+    @Contract("null, null, ?, ? -> null; !null, !null, ?, ? -> ?")
     public static <T> @Nullable T equal(final @Nullable T primaryObject, final @Nullable T secondaryObject,
                                         final @Nullable String primaryName, final @Nullable String secondaryName) throws
                                                                                                                   NonEqualValidationFault {
@@ -276,10 +276,10 @@ public final class Validator {
      * @see #nonEqual(Object, Object, String, String)
      * @since 1.0.0-RC1
      */
-    @Contract("?, ? -> ?")
+    @Contract("null, !null -> null; !null, null -> 1; null, null -> fault; !null, !null -> ?")
     public static <T> @Nullable T nonEqual(final @Nullable T primaryObject, final @Nullable T secondaryObject) throws
                                                                                                                EqualValidationFault {
-        if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
+        if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
             return primaryObject;
         throw new EqualValidationFault(EqualValidationFault.DEFAULT_OBJECTS_MESSAGE);
     }
@@ -303,7 +303,7 @@ public final class Validator {
      * @see #nonEqual(Object, Object)
      * @since 1.0.0-RC1
      */
-    @Contract("?, ? -> ?")
+    @Contract("null, !null, ?, ? -> null; !null, null, ?, ? -> 1; null, null, ?, ? -> fault; !null, !null, ?, ? -> ?")
     public static <T> @Nullable T nonEqual(final @Nullable T primaryObject, final @Nullable T secondaryObject,
                                            final @Nullable String primaryName,
                                            final @Nullable String secondaryName) throws EqualValidationFault {
