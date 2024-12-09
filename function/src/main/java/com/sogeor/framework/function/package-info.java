@@ -17,7 +17,7 @@
 /**
  * Предоставляет функциональные инструменты.
  *
- * @see com.sogeor.framework.function.Callback
+ * @see com.sogeor.framework.function.Action
  * @see com.sogeor.framework.function.Consumer
  * @see com.sogeor.framework.function.Handler
  * @see com.sogeor.framework.function.Supplier
