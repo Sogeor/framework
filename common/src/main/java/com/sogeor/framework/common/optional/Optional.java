@@ -19,7 +19,7 @@ package com.sogeor.framework.common.optional;
 import com.sogeor.framework.annotation.Contract;
 import com.sogeor.framework.annotation.NonNull;
 import com.sogeor.framework.annotation.Nullable;
-import com.sogeor.framework.function.Callback;
+import com.sogeor.framework.function.Action;
 import com.sogeor.framework.function.Consumer;
 import com.sogeor.framework.function.Supplier;
 import com.sogeor.framework.throwable.failure.CheckedFailure;
@@ -97,7 +97,7 @@ public final class Optional<T> {
     public <F extends Throwable> @NonNull T orSupplied(final @NonNull Supplier<T, F> supplier) throws ValidationFault,
                                                                                                       F {
         Validator.nonNull(supplier, "The passed supplier");
-        return contains() ? object : Validator.nonNull(supplier.supply(), "An object supplied by the passed supplier");
+        return contains() ? object : Validator.nonNull(supplier.get(), "An object supplied by the passed supplier");
     }
 
     /**
@@ -108,7 +108,7 @@ public final class Optional<T> {
             final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
         Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw Validator.nonNull(supplier.supply(), "A checked failure supplied by the passed supplier");
+        throw Validator.nonNull(supplier.get(), "A checked failure supplied by the passed supplier");
     }
 
     /**
@@ -119,7 +119,7 @@ public final class Optional<T> {
             final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
         Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw Validator.nonNull(supplier.supply(), "A unchecked failure supplied by the passed supplier");
+        throw Validator.nonNull(supplier.get(), "A unchecked failure supplied by the passed supplier");
     }
 
     /**
@@ -130,7 +130,7 @@ public final class Optional<T> {
             final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
         Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw Validator.nonNull(supplier.supply(), "A checked fault supplied by the passed supplier");
+        throw Validator.nonNull(supplier.get(), "A checked fault supplied by the passed supplier");
     }
 
     /**
@@ -150,7 +150,7 @@ public final class Optional<T> {
             final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
         Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw Validator.nonNull(supplier.supply(), "A unchecked fault supplied by the passed supplier");
+        throw Validator.nonNull(supplier.get(), "A unchecked fault supplied by the passed supplier");
     }
 
     /**
@@ -161,18 +161,18 @@ public final class Optional<T> {
             final @NonNull Supplier<RF, F> supplier) throws ValidationFault, RF, F {
         Validator.nonNull(supplier, "The passed supplier");
         if (contains()) return object;
-        throw Validator.nonNull(supplier.supply(), "A throwable supplied by the passed supplier");
+        throw Validator.nonNull(supplier.get(), "A throwable supplied by the passed supplier");
     }
 
     /**
      * @since 1.0.0-RC1
      */
     @Contract("_ -> this")
-    public <F extends Throwable> @NonNull Optional<T> whenEmpty(final @NonNull Callback<F> callback) throws
+    public <F extends Throwable> @NonNull Optional<T> whenEmpty(final @NonNull Action<F> action) throws
                                                                                                      ValidationFault,
                                                                                                      F {
-        Validator.nonNull(callback, "The passed callback");
-        if (empty()) callback.call();
+        Validator.nonNull(action, "The passed callback");
+        if (empty()) action.perform();
         return this;
     }
 
@@ -180,11 +180,11 @@ public final class Optional<T> {
      * @since 1.0.0-RC1
      */
     @Contract("_ -> this")
-    public <F extends Throwable> @NonNull Optional<T> whenContains(final @NonNull Callback<F> callback) throws
+    public <F extends Throwable> @NonNull Optional<T> whenContains(final @NonNull Action<F> action) throws
                                                                                                         ValidationFault,
                                                                                                         F {
-        Validator.nonNull(callback, "The passed callback");
-        if (contains()) callback.call();
+        Validator.nonNull(action, "The passed callback");
+        if (contains()) action.perform();
         return this;
     }
 
