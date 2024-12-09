@@ -34,13 +34,12 @@ import com.sogeor.framework.validation.Validator;
 public interface Consumer<T, F extends Throwable> {
 
     /**
-     * Создаёт экземпляр с пустым методом {@linkplain #consume(Object)}.
+     * Создаёт потребитель (1) объектов с пустым методом {@linkplain #consume(Object)}.
      *
-     * @param <T> тип объектов, потребляемых новым экземпляром.
-     * @param <F> тип программного сбоя или неисправности, возникающей при неудачном потреблении объекта новым
-     * экземпляром.
+     * @param <T> тип объектов, потребляемых (1).
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачном потреблении объекта (1).
      *
-     * @return Новый экземпляр с пустым методом {@linkplain #consume(Object)}.
+     * @return (1).
      *
      * @since 1.0.0-RC1
      */
@@ -50,33 +49,32 @@ public interface Consumer<T, F extends Throwable> {
     }
 
     /**
-     * Потребляет переданный объект.
+     * Потребляет (1).
      *
-     * @param object объект.
+     * @param object объект (1).
      *
-     * @throws ValidationFault неудачная валидация, предположительно, переданного объекта.
-     * @throws F неудачное потребление переданного объекта.
+     * @throws ValidationFault неудачная валидация, предположительно, (1).
+     * @throws F неудачное потребление (1).
      * @since 1.0.0-RC1
      */
     @Contract("? -> ?")
     void consume(final @Nullable T object) throws ValidationFault, F;
 
     /**
-     * Создаёт экземпляр с методом {@linkplain #consume(Object)}, выполняющим сначала метод
+     * Создаёт потребитель (2) объектов с методом {@linkplain #consume(Object)}, выполняющим сначала метод
      * {@linkplain #consume(Object) this.consume(Object)}, а потом метод
      * {@linkplain #consume(Object) consumer.consume(Object)}.
      *
-     * @param consumer потребитель объектов.
+     * @param consumer потребитель (1) объектов.
      *
-     * @return Новый экземпляр с методом {@linkplain #consume(Object)}, выполняющим сначала метод
-     * {@linkplain #consume(Object) this.consume(Object)}, а потом метод
-     * {@linkplain #consume(Object) consumer.consume(Object)}.
+     * @return (2).
      *
-     * @throws ValidationFault неудачная валидация переданного потребителя объектов.
+     * @throws ValidationFault неудачная валидация (1).
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
-    default Consumer<T, F> and(final @NonNull Consumer<? super T, ? extends F> consumer) throws ValidationFault {
+    default @NonNull Consumer<T, F> and(final @NonNull Consumer<? super T, ? extends F> consumer) throws
+                                                                                                  ValidationFault {
         Validator.nonNull(consumer, "The passed consumer");
         return object -> {
             consume(object);
@@ -85,21 +83,20 @@ public interface Consumer<T, F extends Throwable> {
     }
 
     /**
-     * Создаёт экземпляр с методом {@linkplain #consume(Object)}, пытающимся выполнить сначала метод
+     * Создаёт потребитель (2) объектов с методом {@linkplain #consume(Object)}, пытающимся выполнить сначала метод
      * {@linkplain #consume(Object) this.consume(Object)}, а потом, если неудачно, метод
      * {@linkplain #consume(Object) consumer.consume(Object)}.
      *
-     * @param consumer потребитель объектов.
+     * @param consumer потребитель (1) объектов.
      *
-     * @return Новый экземпляр с методом {@linkplain #consume(Object)}, пытающимся выполнить сначала метод
-     * {@linkplain #consume(Object) this.consume(Object)}, а потом, если неудачно, метод
-     * {@linkplain #consume(Object) consumer.consume(Object)}.
+     * @return (2).
      *
-     * @throws ValidationFault неудачная валидация переданного потребителя объектов.
+     * @throws ValidationFault неудачная валидация (1).
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
-    default Consumer<T, F> or(final @NonNull Consumer<? super T, ? extends F> consumer) throws ValidationFault {
+    default @NonNull Consumer<T, F> or(final @NonNull Consumer<? super T, ? extends F> consumer) throws
+                                                                                                 ValidationFault {
         Validator.nonNull(consumer, "The passed consumer");
         return object -> {
             try {
