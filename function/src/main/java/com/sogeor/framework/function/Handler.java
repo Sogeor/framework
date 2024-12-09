@@ -20,13 +20,15 @@ import com.sogeor.framework.annotation.Contract;
 import com.sogeor.framework.annotation.NonNull;
 import com.sogeor.framework.annotation.Nullable;
 import com.sogeor.framework.validation.ValidationFault;
+import com.sogeor.framework.validation.Validator;
 
 /**
- * Представляет собой обработчик объекта.
+ * Представляет собой обработчик объектов.
  *
- * @param <T> тип объекта.
- * @param <R> тип результирующего объекта.
- * @param <F> тип программного сбоя или неисправности, возникающий при неудачной обработке объекта.
+ * @param <T> тип объектов, обрабатываемых этим обработчиком.
+ * @param <R> тип объектов, возвращаемых этим обработчиком.
+ * @param <F> тип программного сбоя или неисправности, возникающей при неудачной обработке или возврате объекта этим
+ * обработчиком.
  *
  * @since 1.0.0-RC1
  */
@@ -34,33 +36,85 @@ import com.sogeor.framework.validation.ValidationFault;
 public interface Handler<T, R, F extends Throwable> {
 
     /**
-     * Создаёт экземпляр, который при потреблении объекта ничего не делает.
+     * Создаёт обработчик (2) объектов с методом {@linkplain #handle(Object)}, возвращающим (1).
      *
-     * @param <T> тип объекта.
-     * @param <F> тип программного сбоя или неисправности, возникающий при неудачном потреблении объекта.
+     * @param object объект (1).
+     * @param <T> тип объектов, обрабатываемых (2).
+     * @param <R> тип объектов, возвращаемых (2).
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачной обработке или возврате объекта
+     * (2).
      *
-     * @return Новый экземпляр, который при потреблении объекта ничего не делает.
+     * @return (2).
      *
      * @since 1.0.0-RC1
      */
-    @Contract("-> new")
+    @Contract("? -> new")
     static <T, R, F extends Throwable> @NonNull Handler<T, R, F> of(final @Nullable R object) {
         return ignored -> object;
     }
 
     /**
-     * Потребляет переданный объект.
+     * Обрабатывает (1) и возвращает, предположительно, другой объект (2).
      *
-     * @param object объект.
+     * @param object объект (1).
      *
-     * @return Результирующий объект.
+     * @return (2).
      *
-     * @throws ValidationFault неудачная валидация переданного объекта.
-     * @throws F неудачное потребление переданного объекта.
+     * @throws ValidationFault неудачная валидация, предположительно, (1) и/или (2).
+     * @throws F неудачная обработка (1) или возврат (2).
      * @since 1.0.0-RC1
      */
     @Contract("? -> ?")
     @Nullable
     R handle(final @Nullable T object) throws ValidationFault, F;
+
+    /**
+     * Создаёт обработчик (2) объектов с методом {@linkplain #handle(Object)}, выполняющим сначала метод
+     * {@linkplain #handle(Object) this.handle(Object)}, а потом получающим от метода
+     * {@linkplain #handle(Object) handler.handle(Object)} объект и возвращающим его.
+     *
+     * @param handler обработчик (1) объектов.
+     *
+     * @return (2).
+     *
+     * @throws ValidationFault неудачная валидация (1).
+     * @since 1.0.0-RC1
+     */
+    @Contract("!null -> new; null -> fault")
+    default <R2> @Nullable Handler<T, R2, F> and(final @NonNull Handler<? super R, R2, ? extends F> handler) throws
+                                                                                                             ValidationFault {
+        Validator.nonNull(handler, "The passed handler");
+        return object -> handler.handle(handle(object));
+    }
+
+    /**
+     * Создаёт обработчик (2) объектов с методом {@linkplain #handle(Object)}, пытающимся получить сначала от метода
+     * {@linkplain #handle(Object) this.handle(Object)}, а потом, если неудачно, от метода
+     * {@linkplain #handle(Object) handler.handle(Object)} объект и вернуть его.
+     *
+     * @param handler обработчик (1) объектов.
+     *
+     * @return (2).
+     *
+     * @throws ValidationFault неудачная валидация (1).
+     * @since 1.0.0-RC1
+     */
+    @Contract("!null -> new; null -> fault")
+    default @Nullable Handler<T, R, F> or(final @NonNull Handler<? super T, ? extends R, ? extends F> handler) throws
+                                                                                                               ValidationFault {
+        Validator.nonNull(handler, "The passed handler");
+        return object -> {
+            try {
+                return handle(object);
+            } catch (final @NonNull Throwable primary) {
+                try {
+                    return handler.handle(object);
+                } catch (final @NonNull Throwable secondary) {
+                    primary.addSuppressed(secondary);
+                    throw primary;
+                }
+            }
+        };
+    }
 
 }
