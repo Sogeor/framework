@@ -80,8 +80,8 @@ public interface Handler<T, R, F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
-    default <R2> @Nullable Handler<T, R2, F> and(final @NonNull Handler<? super R, R2, ? extends F> handler) throws
-                                                                                                             ValidationFault {
+    default <R2> @NonNull Handler<T, R2, F> and(final @NonNull Handler<? super R, R2, ? extends F> handler) throws
+                                                                                                            ValidationFault {
         Validator.nonNull(handler, "The passed handler");
         return object -> handler.handle(handle(object));
     }
@@ -99,8 +99,8 @@ public interface Handler<T, R, F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
-    default @Nullable Handler<T, R, F> or(final @NonNull Handler<? super T, ? extends R, ? extends F> handler) throws
-                                                                                                               ValidationFault {
+    default @NonNull Handler<T, R, F> or(final @NonNull Handler<? super T, ? extends R, ? extends F> handler) throws
+                                                                                                              ValidationFault {
         Validator.nonNull(handler, "The passed handler");
         return object -> {
             try {
