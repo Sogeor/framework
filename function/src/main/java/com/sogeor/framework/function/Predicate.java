@@ -64,6 +64,19 @@ public interface Predicate<T, F extends Throwable> {
     boolean evaluate(final @Nullable T object) throws ValidationFault, F;
 
     /**
+     * Создаёт предикат (1) объектов с методом {@linkplain #evaluate(Object)}, получающим от метода
+     * {@linkplain #evaluate(Object) this.evaluate(Object)} оценку и возвращающим её инверсию.
+     *
+     * @return [1].
+     *
+     * @since 1.0.0-RC1
+     */
+    @Contract("-> new")
+    default @NonNull Predicate<T, F> not() {
+        return object -> !evaluate(object);
+    }
+
+    /**
      * Создаёт предикат (2) объектов с методом {@linkplain #evaluate(Object)}, получающим от методов
      * {@linkplain #evaluate(Object) this.evaluate(Object)} и {@linkplain #evaluate(Object) predicate.evaluate(Object)}
      * оценки и возвращающим их конъюнкцию.
@@ -76,8 +89,8 @@ public interface Predicate<T, F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
-    default @Nullable Predicate<T, F> and(final @NonNull Predicate<? super T, ? extends F> predicate) throws
-                                                                                                      ValidationFault {
+    default @NonNull Predicate<T, F> and(final @NonNull Predicate<? super T, ? extends F> predicate) throws
+                                                                                                     ValidationFault {
         Validator.nonNull(predicate, "The passed predicate");
         return object -> evaluate(object) && predicate.evaluate(object);
     }
@@ -95,8 +108,8 @@ public interface Predicate<T, F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
-    default @Nullable Predicate<T, F> or(final @NonNull Predicate<? super T, ? extends F> predicate) throws
-                                                                                                     ValidationFault {
+    default @NonNull Predicate<T, F> or(final @NonNull Predicate<? super T, ? extends F> predicate) throws
+                                                                                                    ValidationFault {
         Validator.nonNull(predicate, "The passed predicate");
         return object -> evaluate(object) || predicate.evaluate(object);
     }
@@ -114,8 +127,8 @@ public interface Predicate<T, F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
-    default @Nullable Predicate<T, F> xor(final @NonNull Predicate<? super T, ? extends F> predicate) throws
-                                                                                                      ValidationFault {
+    default @NonNull Predicate<T, F> xor(final @NonNull Predicate<? super T, ? extends F> predicate) throws
+                                                                                                     ValidationFault {
         Validator.nonNull(predicate, "The passed predicate");
         return object -> evaluate(object) ^ predicate.evaluate(object);
     }
