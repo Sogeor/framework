@@ -72,6 +72,7 @@ public interface Handler<T, R, F extends Throwable> {
      * {@linkplain #handle(Object) handler.handle(Object)} объект (3) и возвращающим [3].
      *
      * @param handler обработчик (1) объектов.
+     * @param <R2> тип объектов, возвращаемых [1].
      *
      * @return [2].
      *
