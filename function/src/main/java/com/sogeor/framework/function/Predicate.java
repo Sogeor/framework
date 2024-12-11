@@ -34,7 +34,7 @@ import com.sogeor.framework.validation.Validator;
 public interface Predicate<T, F extends Throwable> {
 
     /**
-     * Создаёт предикат (2) объектов (3) с методом {@linkplain #evaluate(Object)}, возвращающим (1).
+     * Создаёт предикат (2) объектов (3) с методом {@linkplain #evaluate(Object)}, возвращающим [1].
      *
      * @param value оценка (1).
      * @param <T> тип [3].
