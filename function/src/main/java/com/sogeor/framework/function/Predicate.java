@@ -136,6 +136,25 @@ public interface Predicate<T, F extends Throwable> {
     /**
      * Создаёт предикат (2) объектов с методом {@linkplain #evaluate(Object)}, получающим от методов
      * {@linkplain #evaluate(Object) this.evaluate(Object)} и {@linkplain #evaluate(Object) predicate.evaluate(Object)}
+     * оценки и возвращающим их стрелку Пирса.
+     *
+     * @param predicate предикат (1) объектов.
+     *
+     * @return [2].
+     *
+     * @throws ValidationFault неудачная валидация [1].
+     * @since 1.0.0-RC1
+     */
+    @Contract("!null -> new; null -> fault")
+    default @NonNull Predicate<T, F> nor(final @NonNull Predicate<? super T, ? extends F> predicate) throws
+                                                                                                     ValidationFault {
+        Validator.nonNull(predicate, "The passed predicate");
+        return object -> !(evaluate(object) || predicate.evaluate(object));
+    }
+
+    /**
+     * Создаёт предикат (2) объектов с методом {@linkplain #evaluate(Object)}, получающим от методов
+     * {@linkplain #evaluate(Object) this.evaluate(Object)} и {@linkplain #evaluate(Object) predicate.evaluate(Object)}
      * оценки и возвращающим их строгую дизъюнкцию.
      *
      * @param predicate предикат (1) объектов.
