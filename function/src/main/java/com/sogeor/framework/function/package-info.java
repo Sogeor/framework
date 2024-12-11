@@ -18,8 +18,10 @@
  * Предоставляет функциональные инструменты.
  *
  * @see com.sogeor.framework.function.Action
+ * @see com.sogeor.framework.function.Condition
  * @see com.sogeor.framework.function.Consumer
  * @see com.sogeor.framework.function.Handler
+ * @see com.sogeor.framework.function.Predicate
  * @see com.sogeor.framework.function.Supplier
  * @since 1.0.0-RC1
  */
