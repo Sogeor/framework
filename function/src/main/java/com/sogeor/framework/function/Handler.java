@@ -35,7 +35,7 @@ import com.sogeor.framework.validation.Validator;
 public interface Handler<T, R, F extends Throwable> {
 
     /**
-     * Создаёт обработчик (2) объектов (3) с методом {@linkplain #handle(Object)}, возвращающим (1).
+     * Создаёт обработчик (2) объектов (3) с методом {@linkplain #handle(Object)}, возвращающим [1].
      *
      * @param object объект (1).
      * @param <T> тип [3].
