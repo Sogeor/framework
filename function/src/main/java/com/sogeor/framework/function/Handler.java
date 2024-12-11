@@ -69,7 +69,7 @@ public interface Handler<T, R, F extends Throwable> {
     /**
      * Создаёт обработчик (2) объектов с методом {@linkplain #handle(Object)}, выполняющим сначала метод
      * {@linkplain #handle(Object) this.handle(Object)}, а потом получающим от метода
-     * {@linkplain #handle(Object) handler.handle(Object)} объект (3) и возвращающим [3].
+     * {@linkplain #handle(Object) handler.handle(Object)} объект и возвращающим его.
      *
      * @param handler обработчик (1) объектов.
      * @param <R2> тип объектов, возвращаемых [1].
@@ -89,7 +89,7 @@ public interface Handler<T, R, F extends Throwable> {
     /**
      * Создаёт обработчик (2) объектов с методом {@linkplain #handle(Object)}, пытающимся получить сначала от метода
      * {@linkplain #handle(Object) this.handle(Object)}, а потом, если неудачно, от метода
-     * {@linkplain #handle(Object) handler.handle(Object)} объект (3) и вернуть [3].
+     * {@linkplain #handle(Object) handler.handle(Object)} объект и вернуть его.
      *
      * @param handler обработчик (1) объектов.
      *
