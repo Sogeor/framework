@@ -23,10 +23,10 @@ import com.sogeor.framework.validation.ValidationFault;
 import com.sogeor.framework.validation.Validator;
 
 /**
- * Представляет собой поставщик объектов.
+ * Представляет собой поставщик объектов (1).
  *
- * @param <T> тип объектов, поставляемых этим поставщиком.
- * @param <F> тип программного сбоя или неисправности, возникающей при неудачной поставке объекта этим поставщиком.
+ * @param <T> тип [1].
+ * @param <F> тип программного сбоя или неисправности, возникающей при неудачной поставке [1].
  *
  * @since 1.0.0-RC1
  */
@@ -34,13 +34,13 @@ import com.sogeor.framework.validation.Validator;
 public interface Supplier<T, F extends Throwable> {
 
     /**
-     * Создаёт поставщик (2) объектов с методом {@linkplain #get()}, поставляющим (1).
+     * Создаёт поставщик (2) объектов (3) с методом {@linkplain #get()}, поставляющим [1].
      *
      * @param object объект (1).
-     * @param <T> тип объектов, поставляемых (2).
-     * @param <F> тип программного сбоя или неисправности, возникающей при неудачной поставке объекта (2).
+     * @param <T> тип [3].
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачной поставке [3].
      *
-     * @return (2).
+     * @return [2].
      *
      * @since 1.0.0-RC1
      */
@@ -52,10 +52,10 @@ public interface Supplier<T, F extends Throwable> {
     /**
      * Поставляет объект (1).
      *
-     * @return (1).
+     * @return [1].
      *
-     * @throws ValidationFault неудачная валидация, предположительно, (1).
-     * @throws F неудачная поставка (1).
+     * @throws ValidationFault неудачная валидация, предположительно, [1].
+     * @throws F неудачная поставка [1].
      * @since 1.0.0-RC1
      */
     @Contract("-> ?")
@@ -64,11 +64,11 @@ public interface Supplier<T, F extends Throwable> {
 
     /**
      * Создаёт поставщик (2) объектов с методом {@linkplain #get()}, сначала пытающимся получить с помощью метода
-     * {@linkplain #get() this.get()} объект и вернуть его, а потом, если неудачно, возвращающим (1).
+     * {@linkplain #get() this.get()} объект (3) и вернуть [3], а потом, если неудачно, возвращающим [1].
      *
      * @param object объект (1).
      *
-     * @return (2).
+     * @return [2].
      *
      * @since 1.0.0-RC1
      */
@@ -85,14 +85,14 @@ public interface Supplier<T, F extends Throwable> {
 
     /**
      * Создаёт поставщик (2) объектов с методом {@linkplain #get()}, пытающимся получить сначала от метода
-     * {@linkplain #get() this.get()}, а потом, если неудачно, от метода {@linkplain #get() supplier.get()} объект и
-     * вернуть его.
+     * {@linkplain #get() this.get()}, а потом, если неудачно, от метода {@linkplain #get() supplier.get()} объект (3) и
+     * вернуть [3].
      *
      * @param supplier поставщик (1) объектов.
      *
-     * @return (2).
+     * @return [2].
      *
-     * @throws ValidationFault неудачная валидация (1).
+     * @throws ValidationFault неудачная валидация [1].
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
