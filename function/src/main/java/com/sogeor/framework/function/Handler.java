@@ -23,12 +23,11 @@ import com.sogeor.framework.validation.ValidationFault;
 import com.sogeor.framework.validation.Validator;
 
 /**
- * Представляет собой обработчик объектов.
+ * Представляет собой обработчик (1) объектов (2).
  *
- * @param <T> тип объектов, обрабатываемых этим обработчиком.
- * @param <R> тип объектов, возвращаемых этим обработчиком.
- * @param <F> тип программного сбоя или неисправности, возникающей при неудачной обработке или возврате объекта этим
- * обработчиком.
+ * @param <T> тип [2].
+ * @param <R> тип объектов (3), возвращаемых (1).
+ * @param <F> тип программного сбоя или неисправности, возникающей при неудачной обработке [2] или возврате [3].
  *
  * @since 1.0.0-RC1
  */
@@ -36,15 +35,14 @@ import com.sogeor.framework.validation.Validator;
 public interface Handler<T, R, F extends Throwable> {
 
     /**
-     * Создаёт обработчик (2) объектов с методом {@linkplain #handle(Object)}, возвращающим (1).
+     * Создаёт обработчик (2) объектов (3) с методом {@linkplain #handle(Object)}, возвращающим (1).
      *
      * @param object объект (1).
-     * @param <T> тип объектов, обрабатываемых (2).
-     * @param <R> тип объектов, возвращаемых (2).
-     * @param <F> тип программного сбоя или неисправности, возникающей при неудачной обработке или возврате объекта
-     * (2).
+     * @param <T> тип [3].
+     * @param <R> тип объектов (4), возвращаемых [2].
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачной обработке [3] или возврате [4].
      *
-     * @return (2).
+     * @return [2].
      *
      * @since 1.0.0-RC1
      */
@@ -54,14 +52,14 @@ public interface Handler<T, R, F extends Throwable> {
     }
 
     /**
-     * Обрабатывает (1) и возвращает, предположительно, другой объект (2).
+     * Обрабатывает [1] и возвращает, предположительно, другой объект (2).
      *
      * @param object объект (1).
      *
-     * @return (2).
+     * @return [2].
      *
-     * @throws ValidationFault неудачная валидация, предположительно, (1) и/или (2).
-     * @throws F неудачная обработка (1) или возврат (2).
+     * @throws ValidationFault неудачная валидация, предположительно, [1] и/или [2].
+     * @throws F неудачная обработка [1] или возврат [2].
      * @since 1.0.0-RC1
      */
     @Contract("? -> ?")
@@ -71,13 +69,13 @@ public interface Handler<T, R, F extends Throwable> {
     /**
      * Создаёт обработчик (2) объектов с методом {@linkplain #handle(Object)}, выполняющим сначала метод
      * {@linkplain #handle(Object) this.handle(Object)}, а потом получающим от метода
-     * {@linkplain #handle(Object) handler.handle(Object)} объект и возвращающим его.
+     * {@linkplain #handle(Object) handler.handle(Object)} объект (3) и возвращающим [3].
      *
      * @param handler обработчик (1) объектов.
      *
-     * @return (2).
+     * @return [2].
      *
-     * @throws ValidationFault неудачная валидация (1).
+     * @throws ValidationFault неудачная валидация [1].
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
@@ -90,13 +88,13 @@ public interface Handler<T, R, F extends Throwable> {
     /**
      * Создаёт обработчик (2) объектов с методом {@linkplain #handle(Object)}, пытающимся получить сначала от метода
      * {@linkplain #handle(Object) this.handle(Object)}, а потом, если неудачно, от метода
-     * {@linkplain #handle(Object) handler.handle(Object)} объект и вернуть его.
+     * {@linkplain #handle(Object) handler.handle(Object)} объект (3) и вернуть [3].
      *
      * @param handler обработчик (1) объектов.
      *
-     * @return (2).
+     * @return [2].
      *
-     * @throws ValidationFault неудачная валидация (1).
+     * @throws ValidationFault неудачная валидация [1].
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
