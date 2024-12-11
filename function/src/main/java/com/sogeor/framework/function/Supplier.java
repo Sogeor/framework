@@ -64,7 +64,7 @@ public interface Supplier<T, F extends Throwable> {
 
     /**
      * Создаёт поставщик (2) объектов с методом {@linkplain #get()}, сначала пытающимся получить с помощью метода
-     * {@linkplain #get() this.get()} объект (3) и вернуть [3], а потом, если неудачно, возвращающим [1].
+     * {@linkplain #get() this.get()} объект и вернуть его, а потом, если неудачно, возвращающим [1].
      *
      * @param object объект (1).
      *
@@ -85,8 +85,8 @@ public interface Supplier<T, F extends Throwable> {
 
     /**
      * Создаёт поставщик (2) объектов с методом {@linkplain #get()}, пытающимся получить сначала от метода
-     * {@linkplain #get() this.get()}, а потом, если неудачно, от метода {@linkplain #get() supplier.get()} объект (3) и
-     * вернуть [3].
+     * {@linkplain #get() this.get()}, а потом, если неудачно, от метода {@linkplain #get() supplier.get()} объект и
+     * вернуть его.
      *
      * @param supplier поставщик (1) объектов.
      *
