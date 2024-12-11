@@ -23,10 +23,10 @@ import com.sogeor.framework.validation.ValidationFault;
 import com.sogeor.framework.validation.Validator;
 
 /**
- * Представляет собой потребитель объектов.
+ * Представляет собой потребитель объектов (1).
  *
- * @param <T> тип объектов, потребляемых этим потребителем.
- * @param <F> тип программного сбоя или неисправности, возникающей при неудачном потреблении объекта этим потребителем.
+ * @param <T> тип [1].
+ * @param <F> тип программного сбоя или неисправности, возникающей при неудачном потреблении [1].
  *
  * @since 1.0.0-RC1
  */
@@ -34,12 +34,12 @@ import com.sogeor.framework.validation.Validator;
 public interface Consumer<T, F extends Throwable> {
 
     /**
-     * Создаёт потребитель (1) объектов с пустым методом {@linkplain #consume(Object)}.
+     * Создаёт потребитель (1) объектов (2) с пустым методом {@linkplain #consume(Object)}.
      *
-     * @param <T> тип объектов, потребляемых (1).
-     * @param <F> тип программного сбоя или неисправности, возникающей при неудачном потреблении объекта (1).
+     * @param <T> тип [2].
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачном потреблении [2].
      *
-     * @return (1).
+     * @return [1].
      *
      * @since 1.0.0-RC1
      */
@@ -49,12 +49,12 @@ public interface Consumer<T, F extends Throwable> {
     }
 
     /**
-     * Потребляет (1).
+     * Потребляет [1].
      *
      * @param object объект (1).
      *
-     * @throws ValidationFault неудачная валидация, предположительно, (1).
-     * @throws F неудачное потребление (1).
+     * @throws ValidationFault неудачная валидация, предположительно, [1].
+     * @throws F неудачное потребление [1].
      * @since 1.0.0-RC1
      */
     @Contract("? -> ?")
@@ -67,9 +67,9 @@ public interface Consumer<T, F extends Throwable> {
      *
      * @param consumer потребитель (1) объектов.
      *
-     * @return (2).
+     * @return [2].
      *
-     * @throws ValidationFault неудачная валидация (1).
+     * @throws ValidationFault неудачная валидация [1].
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
@@ -89,9 +89,9 @@ public interface Consumer<T, F extends Throwable> {
      *
      * @param consumer потребитель (1) объектов.
      *
-     * @return (2).
+     * @return [2].
      *
-     * @throws ValidationFault неудачная валидация (1).
+     * @throws ValidationFault неудачная валидация [1].
      * @since 1.0.0-RC1
      */
     @Contract("!null -> new; null -> fault")
