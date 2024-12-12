@@ -53,7 +53,7 @@ public interface Action<F extends Throwable> {
      *
      * @return [1].
      *
-     * @apiNote Предназначен для удобного создания лямбда-выражений.
+     * @apiNote Предназначен для удобного создания действий на основе лямбда-выражений.
      * @since 1.0.0-RC1
      */
     @Contract("? -> 1")
