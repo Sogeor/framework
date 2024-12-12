@@ -20,7 +20,7 @@ import com.sogeor.framework.annotation.Contract;
 import com.sogeor.framework.throwable.failure.utility.UtilityCreationFailure;
 
 /**
- * Представляет собой непроверяемую программную неисправность, которая не может быть создана.
+ * Представляет собой непроверяемую программную неисправность, ни один экземпляр которой не должен быть создан.
  *
  * @since 1.0.0-RC1
  */
@@ -28,9 +28,9 @@ public final class ImaginaryFault extends UncheckedFault {
 
     /**
      * Генерирует {@linkplain UtilityCreationFailure проверяемый программный сбой} с
-     * {@linkplain UtilityCreationFailure#TEMPLATE_MESSAGE шаблонным сообщением} на основе имени этого класса.
+     * {@linkplain UtilityCreationFailure#TEMPLATE_MESSAGE шаблонным сообщением} на основе имени этого класса (1).
      *
-     * @throws UtilityCreationFailure создание экземпляра запрещено.
+     * @throws UtilityCreationFailure экземпляр [1] не должен быть создан.
      * @since 1.0.0-RC1
      */
     @Contract("-> failure")
