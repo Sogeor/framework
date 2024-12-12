@@ -36,7 +36,7 @@ final class ActionTest {
 
     @Test
     void methodOf() {
-        final @NonNull AtomicInteger data = new AtomicInteger();
+        final @NonNull var data = new AtomicInteger();
 
         final @NonNull var action = Action.of(() -> data.set(1));
         assertNotNull(action);
@@ -47,10 +47,9 @@ final class ActionTest {
 
     @Test
     void methodAnd() {
-        final @NonNull AtomicInteger data = new AtomicInteger();
+        final @NonNull var data = new AtomicInteger();
 
-        final @NonNull Action<ImaginaryFault> action = Action.<ImaginaryFault>of(() -> data.set(1))
-                                                             .and(data::incrementAndGet);
+        final @NonNull var action = Action.<ImaginaryFault>of(() -> data.set(1)).and(data::incrementAndGet);
         assertNotNull(action);
 
         assertDoesNotThrow(action::perform);
@@ -59,10 +58,9 @@ final class ActionTest {
 
     @Test
     void methodOr() {
-        final @NonNull AtomicInteger data = new AtomicInteger();
+        final @NonNull var data = new AtomicInteger();
 
-        final @NonNull Action<ImaginaryFault> action = Action.<ImaginaryFault>of(() -> data.set(1))
-                                                             .or(() -> data.set(2));
+        final @NonNull var action = Action.<ImaginaryFault>of(() -> data.set(1)).or(() -> data.set(2));
         assertNotNull(action);
 
         assertDoesNotThrow(action::perform);
