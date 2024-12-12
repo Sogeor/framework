@@ -42,8 +42,24 @@ public interface Condition<F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("? -> new")
-    static <F extends Throwable> @NonNull Condition<F> of(final boolean value) {
+    static <F extends Throwable> @NonNull Condition<F> direct(final boolean value) {
         return () -> value;
+    }
+
+    /**
+     * Возвращает [1].
+     *
+     * @param condition условие (1).
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачном вычислении [1].
+     *
+     * @return [1].
+     *
+     * @apiNote Предназначен для удобного создания условий на основе лямбда-выражений.
+     * @since 1.0.0-RC1
+     */
+    @Contract("? -> 1")
+    static <F extends Throwable> @NonNull Condition<F> of(final @NonNull Condition<F> condition) {
+        return condition;
     }
 
     /**
