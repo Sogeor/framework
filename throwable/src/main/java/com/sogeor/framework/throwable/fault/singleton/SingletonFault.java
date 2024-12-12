@@ -43,9 +43,9 @@ public class SingletonFault extends UncheckedFault {
     /**
      * Создаёт экземпляр с {@linkplain #DEFAULT_CAUSE причиной возникновения}, параметрами
      * {@linkplain #DEFAULT_SUPPRESSION подавления} и {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию,
-     * а также с переданным сообщением.
+     * а также с [1].
      *
-     * @param message сообщение.
+     * @param message сообщение (1).
      *
      * @since 1.0.0-RC1
      */
@@ -57,9 +57,9 @@ public class SingletonFault extends UncheckedFault {
     /**
      * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением}, параметрами
      * {@linkplain #DEFAULT_SUPPRESSION подавления} и {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию,
-     * а также с переданной причиной возникновения.
+     * а также с [1].
      *
-     * @param cause причина возникновения.
+     * @param cause причина (1) возникновения.
      *
      * @since 1.0.0-RC1
      */
@@ -70,11 +70,10 @@ public class SingletonFault extends UncheckedFault {
 
     /**
      * Создаёт экземпляр с параметрами {@linkplain #DEFAULT_SUPPRESSION подавления} и
-     * {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию, а также с переданным сообщением и причиной
-     * возникновения.
+     * {@linkplain #DEFAULT_STACK_TRACE трассировки стека} по умолчанию, а также с [1] и [2].
      *
-     * @param message сообщение.
-     * @param cause причина возникновения.
+     * @param message сообщение (1).
+     * @param cause причина (2) возникновения.
      *
      * @since 1.0.0-RC1
      */
@@ -85,10 +84,10 @@ public class SingletonFault extends UncheckedFault {
 
     /**
      * Создаёт экземпляр с {@linkplain #DEFAULT_MESSAGE сообщением} и {@linkplain #DEFAULT_CAUSE причиной возникновения}
-     * по умолчанию, а также с переданными параметрами подавления и трассировки стека.
+     * по умолчанию, а также с [1] и [2].
      *
-     * @param suppression параметр подавления.
-     * @param stackTrace параметр трассировки стека.
+     * @param suppression параметр (1) подавления.
+     * @param stackTrace параметр (2) трассировки стека.
      *
      * @since 1.0.0-RC1
      */
@@ -98,12 +97,12 @@ public class SingletonFault extends UncheckedFault {
     }
 
     /**
-     * Создаёт экземпляр с переданным сообщением, причиной возникновения, параметрами подавления и трассировки стека.
+     * Создаёт экземпляр с [1], [2], [3] и [4].
      *
-     * @param message сообщение.
-     * @param cause причина возникновения.
-     * @param suppression параметр подавления.
-     * @param stackTrace параметр трассировки стека.
+     * @param message сообщение (1).
+     * @param cause причина (2) возникновения.
+     * @param suppression параметр (3) подавления.
+     * @param stackTrace параметр (4) трассировки стека.
      *
      * @since 1.0.0-RC1
      */
