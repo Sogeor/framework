@@ -46,41 +46,19 @@ public interface Action<F extends Throwable> {
     }
 
     /**
-     * Создаёт действие (2) с методом {@linkplain #perform()}, бросающим [1].
+     * Возвращает [1].
      *
-     * @param throwable программный сбой или неисправность (1).
-     * @param <F> тип [1].
+     * @param action действие (1).
+     * @param <F> тип программного сбоя или неисправности, возникающей во время выполнения [1].
      *
-     * @return [2].
+     * @return [1].
      *
+     * @apiNote Предназначен для удобного создания лямбда-выражений.
      * @since 1.0.0-RC1
      */
-    @Contract("!null -> new; null -> fault")
-    static <F extends Throwable> @NonNull Action<F> ofThrowable(final @NonNull F throwable) throws ValidationFault {
-        Validator.nonNull(throwable, "The passed throwable");
-        return () -> {
-            throw throwable;
-        };
-    }
-
-    /**
-     * Создаёт действие (2) с методом {@linkplain #perform()}, получающим с помощью метода
-     * {@linkplain Supplier#get() supplier.get()} [1] и бросающим [1].
-     *
-     * @param supplier поставщик программного сбоя или неисправности (1).
-     * @param <F> тип [1].
-     *
-     * @return [2].
-     *
-     * @since 1.0.0-RC1
-     */
-    @Contract("!null -> new; null -> fault")
-    static <F extends Throwable> @NonNull Action<F> ofThrowable(final @NonNull Supplier<F, ? extends F> supplier) throws
-                                                                                                                  ValidationFault {
-        Validator.nonNull(supplier, "The passed supplier");
-        return () -> {
-            throw Validator.nonNull(supplier.get(), "A throwable supplied by the passed supplier");
-        };
+    @Contract("? -> 1")
+    static <F extends Throwable> @NonNull Action<F> of(final @NonNull Action<F> action) {
+        return action;
     }
 
     /**
