@@ -35,7 +35,7 @@ subprojects {
             options.addStringOption("tag", "implNote:a:\"Implementation Note:\"")
         }
 
-        if (name != "annotation") {
+        if (name !in arrayOf("annotation", "throwable")) {
             dependencies {
                 testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.3")
                 testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.3")
