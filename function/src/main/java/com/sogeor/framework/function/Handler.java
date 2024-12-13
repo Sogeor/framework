@@ -47,8 +47,26 @@ public interface Handler<T, R, F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("? -> new")
-    static <T, R, F extends Throwable> @NonNull Handler<T, R, F> of(final @Nullable R object) {
+    static <T, R, F extends Throwable> @NonNull Handler<T, R, F> direct(final @Nullable R object) {
         return ignored -> object;
+    }
+
+    /**
+     * Возвращает [1].
+     *
+     * @param handler обработчик (1) объектов (2).
+     * @param <T> тип [2].
+     * @param <R> тип объектов (3), возвращаемых [1].
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачной обработке [2] или возврате [3].
+     *
+     * @return [1].
+     *
+     * @apiNote Предназначен для удобного создания [1] на основе лямбда-выражений.
+     * @since 1.0.0-RC1
+     */
+    @Contract("? -> 1")
+    static <T, R, F extends Throwable> @NonNull Handler<T, R, F> of(final @NonNull Handler<T, R, F> handler) {
+        return handler;
     }
 
     /**
