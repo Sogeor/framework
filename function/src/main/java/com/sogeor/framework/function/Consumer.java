@@ -49,6 +49,23 @@ public interface Consumer<T, F extends Throwable> {
     }
 
     /**
+     * Возвращает [1].
+     *
+     * @param consumer потребитель (1) объектов (2).
+     * @param <T> тип [2].
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачном потреблении [2].
+     *
+     * @return [1].
+     *
+     * @apiNote Предназначен для удобного создания [1] на основе лямбда-выражений.
+     * @since 1.0.0-RC1
+     */
+    @Contract("? -> 1")
+    static <T, F extends Throwable> @NonNull Consumer<T, F> of(final @NonNull Consumer<T, F> consumer) {
+        return consumer;
+    }
+
+    /**
      * Потребляет [1].
      *
      * @param object объект (1).
