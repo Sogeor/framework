@@ -20,17 +20,25 @@ import com.sogeor.framework.annotation.NonNull;
 import com.sogeor.framework.throwable.failure.utility.UtilityCreationFailure;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 final class ValidatorTest {
 
     @Test
     void defaultConstructor() {
-        final @NonNull var constructors = Validator.class.getConstructors();
+        final @NonNull var constructors = Validator.class.getDeclaredConstructors();
         assertEquals(1, constructors.length);
 
         constructors[0].setAccessible(true);
-        assertThrowsExactly(UtilityCreationFailure.class, constructors[0]::newInstance);
+        assertThrowsExactly(UtilityCreationFailure.class, () -> {
+            try {
+                constructors[0].newInstance();
+            } catch (final @NonNull InvocationTargetException exception) {
+                throw exception.getCause();
+            }
+        });
     }
 
     @Test
