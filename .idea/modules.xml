@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/function/framework.function.test.iml" filepath="$PROJECT_DIR$/.idea/modules/function/framework.function.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/throwable/framework.throwable.test.iml" filepath="$PROJECT_DIR$/.idea/modules/throwable/framework.throwable.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/validation/framework.validation.test.iml" filepath="$PROJECT_DIR$/.idea/modules/validation/framework.validation.test.iml" />
     </modules>
   </component>
