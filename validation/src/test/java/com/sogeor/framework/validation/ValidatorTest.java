@@ -20,23 +20,24 @@ import com.sogeor.framework.annotation.NonNull;
 import com.sogeor.framework.throwable.failure.utility.UtilityCreationFailure;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.*;
 
 final class ValidatorTest {
 
     @Test
     void defaultConstructor() {
-        for (final var constructor : Validator.class.getConstructors()) {
-            constructor.setAccessible(true);
-            assertThrowsExactly(UtilityCreationFailure.class, constructor::newInstance);
-        }
+        final @NonNull var constructors = Validator.class.getConstructors();
+        assertEquals(1, constructors.length);
+
+        constructors[0].setAccessible(true);
+        assertThrowsExactly(UtilityCreationFailure.class, constructors[0]::newInstance);
     }
 
     @Test
     @SuppressWarnings("DataFlowIssue")
     void isNullMethod() {
         assertDoesNotThrow(() -> Validator.isNull(null));
+
         assertThrowsExactly(NonNullValidationFault.class, () -> Validator.isNull(new Object()));
     }
 
@@ -45,6 +46,7 @@ final class ValidatorTest {
     void isNullWithNameMethod() {
         assertDoesNotThrow(() -> Validator.isNull(null, null));
         assertDoesNotThrow(() -> Validator.isNull(null, "The test name"));
+
         assertThrowsExactly(NonNullValidationFault.class, () -> Validator.isNull(new Object(), null));
         assertThrowsExactly(NonNullValidationFault.class, () -> Validator.isNull(new Object(), "The test name"));
     }
@@ -53,6 +55,7 @@ final class ValidatorTest {
     @SuppressWarnings("DataFlowIssue")
     void nonNullMethod() {
         assertDoesNotThrow(() -> Validator.nonNull(new Object()));
+
         assertThrowsExactly(NullValidationFault.class, () -> Validator.nonNull(null));
     }
 
@@ -61,6 +64,7 @@ final class ValidatorTest {
     void nonNullWithNameMethod() {
         assertDoesNotThrow(() -> Validator.nonNull(new Object(), null));
         assertDoesNotThrow(() -> Validator.nonNull(new Object(), "The test name"));
+
         assertThrowsExactly(NullValidationFault.class, () -> Validator.nonNull(null, null));
         assertThrowsExactly(NullValidationFault.class, () -> Validator.nonNull(null, "The test name"));
     }
@@ -69,6 +73,7 @@ final class ValidatorTest {
     @SuppressWarnings("DataFlowIssue")
     void isFalseMethod() {
         assertDoesNotThrow(() -> Validator.isFalse(false));
+
         assertThrowsExactly(TrueValidationFault.class, () -> Validator.isFalse(true));
     }
 
@@ -77,6 +82,7 @@ final class ValidatorTest {
     void isFalseWithNameMethod() {
         assertDoesNotThrow(() -> Validator.isFalse(false, null));
         assertDoesNotThrow(() -> Validator.isFalse(false, "The test name"));
+
         assertThrowsExactly(TrueValidationFault.class, () -> Validator.isFalse(true, null));
         assertThrowsExactly(TrueValidationFault.class, () -> Validator.isFalse(true, "The test name"));
     }
@@ -85,6 +91,7 @@ final class ValidatorTest {
     @SuppressWarnings("DataFlowIssue")
     void isTrueMethod() {
         assertDoesNotThrow(() -> Validator.isTrue(true));
+
         assertThrowsExactly(FalseValidationFault.class, () -> Validator.isTrue(false));
     }
 
@@ -93,6 +100,7 @@ final class ValidatorTest {
     void isTrueWithNameMethod() {
         assertDoesNotThrow(() -> Validator.isTrue(true, null));
         assertDoesNotThrow(() -> Validator.isTrue(true, "The test name"));
+
         assertThrowsExactly(FalseValidationFault.class, () -> Validator.isTrue(false, null));
         assertThrowsExactly(FalseValidationFault.class, () -> Validator.isTrue(false, "The test name"));
     }
@@ -100,8 +108,10 @@ final class ValidatorTest {
     @Test
     void equalMethod() {
         final @NonNull var object = new Object();
+
         assertDoesNotThrow(() -> Validator.equal(null, null));
         assertDoesNotThrow(() -> Validator.equal(object, object));
+
         assertThrowsExactly(NonEqualValidationFault.class, () -> Validator.equal(null, object));
         assertThrowsExactly(NonEqualValidationFault.class, () -> Validator.equal(object, null));
         assertThrowsExactly(NonEqualValidationFault.class, () -> Validator.equal(object, new Object()));
@@ -110,10 +120,12 @@ final class ValidatorTest {
     @Test
     void equalWithNamesMethod() {
         final @NonNull var object = new Object();
+
         assertDoesNotThrow(() -> Validator.equal(null, null, null, null));
         assertDoesNotThrow(() -> Validator.equal(null, null, "The primary test name", "The secondary test name"));
         assertDoesNotThrow(() -> Validator.equal(object, object, null, null));
         assertDoesNotThrow(() -> Validator.equal(object, object, "The primary test name", "The secondary test name"));
+
         assertThrowsExactly(NonEqualValidationFault.class, () -> Validator.equal(null, object, null, null));
         assertThrowsExactly(NonEqualValidationFault.class,
                             () -> Validator.equal(null, object, "The primary test name", "The secondary test name"));
@@ -129,9 +141,11 @@ final class ValidatorTest {
     @Test
     void nonEqualMethod() {
         final @NonNull var object = new Object();
+
         assertDoesNotThrow(() -> Validator.nonEqual(object, null));
         assertDoesNotThrow(() -> Validator.nonEqual(null, object));
         assertDoesNotThrow(() -> Validator.nonEqual(object, new Object()));
+
         assertThrowsExactly(EqualValidationFault.class, () -> Validator.nonEqual(null, null));
         assertThrowsExactly(EqualValidationFault.class, () -> Validator.nonEqual(object, object));
     }
@@ -139,6 +153,7 @@ final class ValidatorTest {
     @Test
     void nonEqualWithNamesMethod() {
         final @NonNull var object = new Object();
+
         assertDoesNotThrow(() -> Validator.nonEqual(object, null, null, null));
         assertDoesNotThrow(() -> Validator.nonEqual(object, null, "The primary test name", "The secondary test name"));
         assertDoesNotThrow(() -> Validator.nonEqual(null, object, null, null));
@@ -146,6 +161,7 @@ final class ValidatorTest {
         assertDoesNotThrow(() -> Validator.nonEqual(object, new Object(), null, null));
         assertDoesNotThrow(
                 () -> Validator.nonEqual(object, new Object(), "The primary test name", "The secondary test name"));
+
         assertThrowsExactly(EqualValidationFault.class, () -> Validator.nonEqual(null, null, null, null));
         assertThrowsExactly(EqualValidationFault.class,
                             () -> Validator.nonEqual(null, null, "The primary test name", "The secondary test name"));
