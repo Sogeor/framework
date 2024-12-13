@@ -45,8 +45,25 @@ public interface Supplier<T, F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("? -> new")
-    static <T, F extends Throwable> @NonNull Supplier<T, F> of(final @Nullable T object) {
+    static <T, F extends Throwable> @NonNull Supplier<T, F> direct(final @Nullable T object) {
         return () -> object;
+    }
+
+    /**
+     * Возвращает [1].
+     *
+     * @param supplier поставщик (1) объектов (2).
+     * @param <T> тип [2].
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачной поставке [2].
+     *
+     * @return [1].
+     *
+     * @apiNote Предназначен для удобного создания [1] на основе лямбда-выражений.
+     * @since 1.0.0-RC1
+     */
+    @Contract("? -> 1")
+    static <T, F extends Throwable> @NonNull Supplier<T, F> of(final @NonNull Supplier<T, F> supplier) {
+        return supplier;
     }
 
     /**
