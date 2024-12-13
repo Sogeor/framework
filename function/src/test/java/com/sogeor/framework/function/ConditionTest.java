@@ -43,10 +43,18 @@ final class ConditionTest {
     void methodOf() {
         final @NonNull var data = new AtomicBoolean();
 
-        final @NonNull var action = Condition.of(data::get);
-        assertNotNull(action);
+        final @NonNull var condition = Condition.of(data::get);
+        assertNotNull(condition);
 
-        assertEquals(data.get(), action.compute());
+        assertEquals(data.get(), condition.compute());
+    }
+
+    @Test
+    void methodNot() {
+        final @NonNull var condition = Condition.<ImaginaryFault>direct(false).not();
+        assertNotNull(condition);
+
+        assertTrue(condition.compute());
     }
 
     @Test
