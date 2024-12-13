@@ -45,8 +45,25 @@ public interface Predicate<T, F extends Throwable> {
      * @since 1.0.0-RC1
      */
     @Contract("? -> new")
-    static <T, F extends Throwable> @NonNull Predicate<T, F> of(final boolean value) {
+    static <T, F extends Throwable> @NonNull Predicate<T, F> direct(final boolean value) {
         return ignored -> value;
+    }
+
+    /**
+     * Возвращает [1].
+     *
+     * @param predicate предикат (1) объектов (2).
+     * @param <T> тип [2].
+     * @param <F> тип программного сбоя или неисправности, возникающей при неудачной оценке [2].
+     *
+     * @return [1].
+     *
+     * @apiNote Предназначен для удобного создания [1] на основе лямбда-выражений.
+     * @since 1.0.0-RC1
+     */
+    @Contract("? -> 1")
+    static <T, F extends Throwable> @NonNull Predicate<T, F> of(final @NonNull Predicate<T, F> predicate) {
+        return predicate;
     }
 
     /**
