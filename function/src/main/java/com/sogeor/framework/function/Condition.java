@@ -54,7 +54,7 @@ public interface Condition<F extends Throwable> {
      *
      * @return [1].
      *
-     * @apiNote Предназначен для удобного создания условий на основе лямбда-выражений.
+     * @apiNote Предназначен для удобного создания [1] на основе лямбда-выражений.
      * @since 1.0.0-RC1
      */
     @Contract("? -> 1")
