@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package com.sogeor.framework.common.container;
-
 /**
+ * Предоставляет обёртки над изменяемыми объектами и значениями.
+ *
+ * @see com.sogeor.framework.common
+ * @see com.sogeor.framework.common.mutable.Mutable
  * @since 1.0.0-RC1
  */
-public interface Container<T> {}
+package com.sogeor.framework.common.mutable;
