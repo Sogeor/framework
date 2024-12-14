@@ -65,7 +65,9 @@ public final class Mutable<T> {
     }
 
     /**
-     * Создаёт и возвращает {@linkplain #Mutable() экземпляр (1) на основе } {@code null}.
+     * Создаёт и возвращает {@linkplain #Mutable() экземпляр (1) на основе } {@code null} (2).
+     *
+     * @param <T> тип [2].
      *
      * @return [1].
      *
@@ -81,6 +83,7 @@ public final class Mutable<T> {
      * Создаёт и возвращает {@linkplain #Mutable(Object) экземпляр (2) на основе [1]}.
      *
      * @param object объект (1).
+     * @param <T> тип [1].
      *
      * @return [2].
      *
