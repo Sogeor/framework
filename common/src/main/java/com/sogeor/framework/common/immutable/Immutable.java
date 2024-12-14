@@ -77,7 +77,9 @@ public final class Immutable<T> {
     }
 
     /**
-     * @return {@linkplain #EMPTY Обёртка над неизменяемым} {@code null}.
+     * @param <T> тип [1].
+     *
+     * @return {@linkplain #EMPTY Обёртка над неизменяемым} {@code null} (1).
      *
      * @see #of(Object)
      * @since 1.0.0-RC1
@@ -89,12 +91,13 @@ public final class Immutable<T> {
     }
 
     /**
-     * Если {@code object == null}, то возвращает {@linkplain #EMPTY обёртку (2) над неизменяемым} {@code null}, иначе
-     * создаёт и возвращает {@linkplain #Immutable(Object) экземпляр (3) на основе [1]}.
+     * Если {@code object == null}, то возвращает приведённую к [2] {@linkplain #EMPTY обёртку (3) над неизменяемым}
+     * {@code null}, иначе создаёт и возвращает {@linkplain #Immutable(Object) экземпляр (4) на основе [1]}.
      *
      * @param object объект (1).
+     * @param <T> тип (2) [1].
      *
-     * @return [2] или [3].
+     * @return [3] или [4].
      *
      * @see #empty()
      * @since 1.0.0-RC1
