@@ -25,6 +25,6 @@ module com.sogeor.framework.common {
     requires com.sogeor.framework.throwable;
     requires com.sogeor.framework.validation;
 
-    exports com.sogeor.framework.common;
-    exports com.sogeor.framework.common.optional;
+    exports com.sogeor.framework.common.immutable;
+    exports com.sogeor.framework.common.mutable;
 }
