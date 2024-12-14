@@ -17,7 +17,8 @@
 /**
  * Предоставляет фундаментальные инструменты.
  *
- * @see com.sogeor.framework.common.CommonFault
+ * @see com.sogeor.framework.common.immutable
+ * @see com.sogeor.framework.common.mutable
  * @since 1.0.0-RC1
  */
 package com.sogeor.framework.common;
